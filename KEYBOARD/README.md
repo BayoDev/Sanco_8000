@@ -29,7 +29,7 @@ The keyboard uses an 8pin DIN connector with the following configuration :
 Pinout of the **male** connector:
 | Pin | Cable | Usage |
 |:---:|:-----:|:-----:|
-| 3   | Green | Transmit |
+| 3   | Green | DATA |
 | 6   | Red   | Vcc(5V) |
 | 8   | White,Black | GND
 
@@ -38,15 +38,23 @@ The other pins are unused.
 <a id="protocol"></a>
 ## Protocol
 
-The keyboard uses the TRANSMIT pin to send data over to the computer. The TRANSMIT pin uses TTL voltages (5V/0V).
+The keyboard uses the DATA pin to exchange data with the computer. The DATA pin is used both for sending and receiving data and it uses TTL voltages (5V/0V).
 
-Two bytes of data are sent everytime a key is pressed. The first one represent the key that was pressed and the second one contains flag for CTRL,ALT,CAPS and SHIFT.
+The signals were interpreted using a UART decoder at 1200 baud with lsb-first, one stop bit and no parity bit. The following section assume this interpretation.
 
 :warning: The decoder used to interpret the data may be wrong you can use the [saved pulseview capture](./SIGNALS/) for further analysis. :warning:
 
-The signal was interpreted using a UART decoder at 1200 baud with lsb-first, one stop bit and no parity bit. The key codes are reported accordingly.
+### Computer -> Keyboard
 
-### Signal example
+![signal_ex_2](./Images/led_boot_signal.png)
+
+ The only documented signal that is sent from the computer to the keyboard is a single byte (0x12) sent after the power-up/reset. It's likely used to signal to the keyboard that the led of the BOOT key should be on.
+
+### Keyboard -> Computer 
+
+Two bytes of data are sent everytime a key is pressed. The first one represent the key that was pressed and the second one contains flag for CTRL,ALT,CAPS and SHIFT.
+
+### Key press signal example
 ![signal_ex](./Images/saved_capture.PNG)
 
 ### Observations:
