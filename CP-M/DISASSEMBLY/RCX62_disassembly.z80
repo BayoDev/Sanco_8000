@@ -1,0 +1,768 @@
+; This is the disassembly of the "RCX62.COM" program for the Sanco 8003         
+; found in the CP/M 2.2 image at this link:
+;       https://archive.org/details/sanco-8003-cpm-2.2fr.dsqd
+;
+; By @BayoDev
+
+org $0100
+
+nop                                     ;[0100] 00
+nop                                     ;[0101] 00
+nop                                     ;[0102] 00
+; JUMP START
+jp      INIT                            ;[0103] c3 0f 01
+
+SIO_SETUP_WRAPPER:
+    jp      SIO_SETUP                       ;[0106] c3 4e 04
+
+SIO_WRITE_WRAPPER:
+    jp      SIO_WRITE                       ;[0109] c3 61 04
+
+SIO_READ_WRAPPER:
+    jp      SIO_READ                        ;[010c] c3 6d 04
+
+INIT:
+    ld      sp,$01ac                        ;[010f] 31 ac 01    Setup stack pointer
+    call    SIO_SETUP_WRAPPER               ;[0112] cd 06 01    Setup SIO
+    ld      hl,($0001)                      ;[0115] 2a 01 00
+    ld      de,$0006                        ;[0118] 11 06 00    
+    add     hl,de                           ;[011b] 19
+    ld      ($01fe),hl                      ;[011c] 22 fe 01    ($01fe) = $0006
+    call    PRINT_NEXT_STR                  ;[011f] cd df 01
+    DB $0d                                                   ;[0122] 0d
+    DB $0a                                                   ;[0123] 0a
+    .ASCII "File exchange program vers 6.0 ,4800 Baud (SED)" ;[0124]      
+    DB $0d                                                   ;[0153] 0d
+    DB $0a                                                   ;[0154] 0a
+    DB $0a                                                   ;[0155] 0a
+    .ASCII "Ready to receive"                                ;[0156] 52 65 61 64 79 20 74 6f 20 72 65 63 65 69 76 65
+    DB $0d                                                   ;[0166] 0d
+    DB $0a                                                   ;[0167] 0a
+    DB $00                                                   ;[0168] 00
+    jp      RCV_FIRST                           ;[0169] c3 34 04
+
+; STACK SPACE START
+DB $00                                   ;[016c] 00
+DB $00                                   ;[016d] 00
+DB $00                                   ;[016e] 00
+DB $00                                   ;[016f] 00
+DB $00                                   ;[0170] 00
+DB $00                                   ;[0171] 00
+DB $00                                   ;[0172] 00
+DB $00                                   ;[0173] 00
+DB $00                                   ;[0174] 00
+DB $00                                   ;[0175] 00
+DB $00                                   ;[0176] 00
+DB $00                                   ;[0177] 00
+DB $00                                   ;[0178] 00
+DB $00                                   ;[0179] 00
+DB $00                                   ;[017a] 00
+DB $00                                   ;[017b] 00
+DB $00                                   ;[017c] 00
+DB $00                                   ;[017d] 00
+DB $00                                   ;[017e] 00
+DB $00                                   ;[017f] 00
+DB $00                                   ;[0180] 00
+DB $00                                   ;[0181] 00
+DB $00                                   ;[0182] 00
+DB $00                                   ;[0183] 00
+DB $00                                   ;[0184] 00
+DB $00                                   ;[0185] 00
+DB $00                                   ;[0186] 00
+DB $00                                   ;[0187] 00
+DB $00                                   ;[0188] 00
+DB $00                                   ;[0189] 00
+DB $00                                   ;[018a] 00
+DB $00                                   ;[018b] 00
+DB $00                                   ;[018c] 00
+DB $00                                   ;[018d] 00
+DB $00                                   ;[018e] 00
+DB $00                                   ;[018f] 00
+DB $00                                   ;[0190] 00
+DB $00                                   ;[0191] 00
+DB $00                                   ;[0192] 00
+DB $00                                   ;[0193] 00
+DB $00                                   ;[0194] 00
+DB $00                                   ;[0195] 00
+DB $00                                   ;[0196] 00
+DB $00                                   ;[0197] 00
+DB $00                                   ;[0198] 00
+DB $00                                   ;[0199] 00
+DB $00                                   ;[019a] 00
+DB $00                                   ;[019b] 00
+DB $00                                   ;[019c] 00
+DB $00                                   ;[019d] 00
+DB $00                                   ;[019e] 00
+DB $00                                   ;[019f] 00
+DB $00                                   ;[01a0] 00
+DB $00                                   ;[01a1] 00
+DB $00                                   ;[01a2] 00
+DB $00                                   ;[01a3] 00
+DB $00                                   ;[01a4] 00
+DB $00                                   ;[01a5] 00
+DB $00                                   ;[01a6] 00
+DB $00                                   ;[01a7] 00
+DB $00                                   ;[01a8] 00
+DB $00                                   ;[01a9] 00
+DB $00                                   ;[01aa] 00
+DB $00                                   ;[01ab] 00
+; STACK SPACE END 
+
+; Data buffer for filename (?)
+DB $00                                  ;[01ac] 00
+DB $00                                  ;[01ad] 00
+DB $00                                  ;[01ae] 00
+DB $00                                  ;[01af] 00
+DB $00                                  ;[01b0] 00
+DB $00                                  ;[01b1] 00
+DB $00                                  ;[01b2] 00
+DB $00                                  ;[01b3] 00
+DB $00                                  ;[01b4] 00
+DB $00                                  ;[01b5] 00
+DB $00                                  ;[01b6] 00
+DB $00                                  ;[01b7] 00
+DB $00                                  ;[01b8] 00
+DB $00                                  ;[01b9] 00
+DB $00                                  ;[01ba] 00
+DB $00                                  ;[01bb] 00
+
+; FCB file structure
+DB $00                                  ;[01bc] 00       
+DB $00                                  ;[01bd] 00      
+DB $00                                  ;[01be] 00
+DB $00                                  ;[01bf] 00
+DB $00                                  ;[01c0] 00
+DB $00                                  ;[01c1] 00
+DB $00                                  ;[01c2] 00
+DB $00                                  ;[01c3] 00
+DB $00                                  ;[01c4] 00
+DB $00                                  ;[01c5] 00
+DB $00                                  ;[01c6] 00
+DB $00                                  ;[01c7] 00
+DB $00                                  ;[01c8] 00
+DB $00                                  ;[01c9] 00
+DB $00                                  ;[01ca] 00
+DB $00                                  ;[01cb] 00
+DB $00                                  ;[01cc] 00
+DB $00                                  ;[01cd] 00
+DB $00                                  ;[01ce] 00
+DB $00                                  ;[01cf] 00
+DB $00                                  ;[01d0] 00
+DB $00                                  ;[01d1] 00
+DB $00                                  ;[01d2] 00
+DB $00                                  ;[01d3] 00
+DB $00                                  ;[01d4] 00
+DB $00                                  ;[01d5] 00
+DB $00                                  ;[01d6] 00
+DB $00                                  ;[01d7] 00
+DB $00                                  ;[01d8] 00
+DB $00                                  ;[01d9] 00
+DB $00                                  ;[01da] 00
+DB $00                                  ;[01db] 00
+DB $00                                  ;[01dc] 00
+DB $00                                  ;[01dd] 00
+DB $00                                  ;[01de] 00
+
+; This routine prints all the characters after the "call" function until it encounters a $00
+; When that happens the call resume execution from after the $00
+PRINT_NEXT_STR:
+    ex      (sp),hl                         ;[01df] e3    HL will contain the address where the routine was called (+1)
+    ld      a,(hl)                          ;[01e0] 7e    Read the content of HL
+    inc     hl                              ;[01e1] 23    Increment address
+    ex      (sp),hl                         ;[01e2] e3    Put the address back on the stack
+    or      a                               ;[01e3] b7     
+    ret     z                               ;[01e4] c8     If A=$00 return
+    call    C_WRITE                         ;[01e5] cd eb 01
+    jp      PRINT_NEXT_STR                  ;[01e8] c3 df 01
+
+; Output A to console
+C_WRITE:
+    push    af                              ;[01eb] f5
+    push    hl                              ;[01ec] e5
+    push    bc                              ;[01ed] c5
+    push    de                              ;[01ee] d5
+    ld      c,$02                           ;[01ef] 0e 02
+    ld      e,a                             ;[01f1] 5f
+    call    $0005                           ;[01f2] cd 05 00
+    pop     de                              ;[01f5] d1
+    pop     bc                              ;[01f6] c1
+    pop     hl                              ;[01f7] e1
+    pop     af                              ;[01f8] f1
+    ret                                     ;[01f9] c9
+
+; ???
+L01FA:
+    push    bc                              ;[01fa] c5
+    push    de                              ;[01fb] d5
+    push    hl                              ;[01fc] e5
+
+    call    $0000                           ;[01fd] cd 00 00    This will be modified (INIT)
+
+    pop     hl                              ;[0200] e1
+    pop     de                              ;[0201] d1
+    pop     bc                              ;[0202] c1
+    ret                                     ;[0203] c9
+
+;================================
+;        FILE SYSCALLS
+;================================
+
+F_OPEN:
+    ld      c,$0f                           ;[0204] 0e 0f
+    jp      $0005                           ;[0206] c3 05 00
+
+F_WRITE:
+    ld      c,$15                           ;[0209] 0e 15
+    jp      $0005                           ;[020b] c3 05 00
+
+F_CLOSE:
+    ld      c,$10                           ;[020e] 0e 10
+    jp      $0005                           ;[0210] c3 05 00
+
+F_READ:
+    ld      c,$14                           ;[0213] 0e 14
+    jp      $0005                           ;[0215] c3 05 00
+
+F_MAKE:
+    ld      c,$16                           ;[0218] 0e 16
+    jp      $0005                           ;[021a] c3 05 00
+
+F_DELETE:
+    ld      c,$13                           ;[021d] 0e 13
+    jp      $0005                           ;[021f] c3 05 00
+
+F_RENAME:
+    ld      c,$17                           ;[0222] 0e 17
+    jp      $0005                           ;[0224] c3 05 00
+
+;================================
+
+; This routine is used to receive and save to file all the data
+; Algorithm:
+;       1) 128 blocks of 128 bytes each are read. After a full block is received
+;          a special character is expected:
+;               - ($17) a kind of acknowledge
+;               - ($04) this signal that it was the last block of the file
+;           If none of these signal is received an error occured
+;       2) After the 128 blocks are received (or $04 encountered) the blocks are written to the file with FCB in $005c
+;          if a block that is being written is followed by $04 the file is closed. Otherwise go to step (3)
+;       3) The transmitter will be waiting for the receiver to write everything to the file so
+;          if 128 blocks were written and the file was not complete an acknowledgment ($06) is sent to the transmitter
+;          to resume transmission and the algorithm keep reading from step (1)
+RCV_SAVE_FILE:
+    ld      b,$80                           ;[0227] 06 80
+    ld      hl,$1400                        ;[0229] 21 00 14    Setup pointer to memory buffer
+    ; Read 128 blocks of 128 bytes (unless file is shorter)
+    READ_BLOCK_LOOP:
+        push    bc                              ;[022c] c5
+        ld      b,$80                           ;[022d] 06 80       Setup loop counter
+        ; Read 128 bytes from the SIO into memory starting from $1400
+        READ_128_LOOP:
+            call    SIO_READ_WRAPPER            ;[022f] cd 0c 01    Read value from SIO
+            ld      (hl),a                      ;[0232] 77          Store value in HL
+            inc     hl                          ;[0233] 23          HL++
+            djnz    READ_128_LOOP                       ;[0234] 10 f9       B-- and loop if B!=$00
+        call    SIO_READ_WRAPPER                ;[0236] cd 0c 01    
+        ld      (hl),a                          ;[0239] 77          Read value from SIO and store in buffer
+        inc     hl                              ;[023a] 23          
+        cp      $17                             ;[023b] fe 17       
+        pop     bc                              ;[023d] c1          
+        jp      z,$0249                         ;[023e] ca 49 02    Jump if value from SIO is $17 (expected control char)
+        cp      $04                             ;[0241] fe 04
+        jp      z,$024b                         ;[0243] ca 4b 02    Jump if value from SIO is $04 (end of transmission)
+        jp      nz,FILE_TRANSFER_ERROR          ;[0246] c2 83 03    If neither $17 or $04 error 
+        djnz    READ_BLOCK_LOOP                           ;[0249] 10 e1
+    ld      b,$80                           ;[024b] 06 80           Reset loop counter for number of blocks
+    ld      hl,$1400                        ;[024d] 21 00 14        Reset data buffer to start
+    WRITE_BLOCKS_LOOP:
+        push    bc                              ;[0250] c5
+        ld      bc,$0080                        ;[0251] 01 80 00
+        ld      de,$0080                        ;[0254] 11 80 00
+        ldir                                    ;[0257] ed b0           Move 128 bytes from data buffer to $0080
+        ld      a,(hl)                          ;[0259] 7e              Get control character
+        cp      $17                             ;[025a] fe 17           
+        jp      nz,END_CLOSE_FILE               ;[025c] c2 76 02        Jump if that was the last block
+        push    hl                              ;[025f] e5              
+        push    bc                              ;[0260] c5
+        push    de                              ;[0261] d5
+        ld      de,$005c                        ;[0262] 11 5c 00        Load FCB pointer
+        call    F_WRITE                         ;[0265] cd 09 02        Write block to file
+        pop     de                              ;[0268] d1              
+        pop     bc                              ;[0269] c1
+        pop     hl                              ;[026a] e1
+        or      a                               ;[026b] b7              
+        pop     bc                              ;[026c] c1          
+        jp      nz,FILE_WRITE_ERROR             ;[026d] c2 a4 03        Jump if error in syscall
+        inc     hl                              ;[0270] 23              HL++
+        djnz    WRITE_BLOCKS_LOOP               ;[0271] 10 dd           Loop until 128 blocks
+    jp  KEEP_RCV                                ;[0273] c3 92 02    128 blocks written without end of file
+
+; This routine write the last block to the file and closes it
+END_CLOSE_FILE:
+    pop     bc                              ;[0276] c1
+    cp      $04                             ;[0277] fe 04
+    jp      nz,FILE_TRANSFER_ERROR          ;[0279] c2 83 03    If not end of file char, error
+    ld      de,$005c                        ;[027c] 11 5c 00    
+    call    F_WRITE                         ;[027f] cd 09 02    Write last block to file
+    or      a                               ;[0282] b7          
+    jp      nz,FILE_WRITE_ERROR             ;[0283] c2 a4 03    jump if error in syscall 
+    ld      de,$005c                        ;[0286] 11 5c 00
+    call    F_CLOSE                         ;[0289] cd 0e 02    Close file
+    inc     a                               ;[028c] 3c
+    jp      z,CLOSING_ERROR                 ;[028d] ca c2 03    Jump if error in syscall
+    xor     a                               ;[0290] af          A=0
+    ret                                     ;[0291] c9     
+
+; This routine is called after 128 blocks of 128 bytes were successfully saved
+; to ask the transmitter to resume transmission
+KEEP_RCV:
+    ld      a,$06                           ;[0292] 3e 06
+    call    SIO_WRITE_WRAPPER               ;[0294] cd 09 01    Send acknowledge
+    jp      RCV_SAVE_FILE                   ;[0297] c3 27 02    Start receiving again
+
+
+TRANSMISSION_END:
+    call    PRINT_NEXT_STR          ;[029a] cd df 01
+    DB $0D                          ;[029b] 0d
+    DB $0A                          ;[029c] 0a
+    DB $0A                          ;[029d] 0a
+    .ASCII "End of transmission"    ;[02a0]
+    DB $0D                          ;[02b3] 0d
+    DB $0A                          ;[02b4] 0a
+    DB $00                          ;[02b5] 00
+    jp      $0000                   ;[02b6] c3 00 00    EXIT FROM CP/M
+
+RCV_FIRST_WRAPPER:
+    jp      RCV_FIRST                           ;[02b9] c3 34 04
+
+
+RCV_SETUP:
+    call    GET_FILENAME                    ;[02bc] cd 1d 03    Read 12 bytes in $01bd (?) (Probably read filename)
+    cp      $03                             ;[02bf] fe 03       
+    jp      nz,FILE_NAME_ERROR              ;[02c1] c2 4a 03    Jump if filename didnt end with $03 (bad data)
+    ld      hl,$01ac                        ;[02c4] 21 ac 01    
+    ld      de,$005c                        ;[02c7] 11 5c 00    
+    ld      bc,$0010                        ;[02ca] 01 10 00    
+    ldir                                    ;[02cd] ed b0       Setup the FCB for the syscalls with the input filename (in $005c)
+    ld      de,$005c                        ;[02cf] 11 5c 00    
+    call    F_OPEN                          ;[02d2] cd 04 02    Open file with FCB in $005c (?)
+    inc     a                               ;[02d5] 3c
+    jp      nz,START_RCV                    ;[02d6] c2 e3 02    Jump if no error in F_OPEN (file already exists)
+    ld      de,$005c                        ;[02d9] 11 5c 00
+    call    F_MAKE                          ;[02dc] cd 18 02    Create file
+    inc     a                               ;[02df] 3c
+    jp      z,DIR_FULL_ERROR                ;[02e0] ca 67 03    Jump if error (directory full) 
+START_RCV:
+    ld      de,$005c                        ;[02e3] 11 5c 00    
+    xor     a                               ;[02e6] af
+    ld      hl,$0020                        ;[02e7] 21 20 00
+    add     hl,de                           ;[02ea] 19          HL = $7C
+    ld      (hl),$00                        ;[02eb] 36 00       ($7C) = $00
+    ld      de,$01bc                        ;[02ed] 11 bc 01    
+    call    PRINT_FILENAME                  ;[02f0] cd 0f 04    Print filename located at $01bc
+    ld      a,$06                           ;[02f3] 3e 06
+    call    SIO_WRITE_WRAPPER               ;[02f5] cd 09 01    Write $06 to SIO (Acknowledge)
+    call    RCV_SAVE_FILE                   ;[02f8] cd 27 02    Receive and save file 
+    or      a                               ;[02fb] b7          If routine ended correctly, A should be $00
+    jp      nz,FILE_ERROR                   ;[02fc] c2 dd 03    If A!=$00 error
+    ld      de,$01bc                        ;[02ff] 11 bc 01    
+    call    F_DELETE                        ;[0302] cd 1d 02    Delete file (?)       
+    ld      de,$01ac                        ;[0305] 11 ac 01
+    call    F_RENAME                        ;[0308] cd 22 02    Rename file from $01ac as the file from $01bc
+    ld      a,$20                           ;[030b] 3e 20
+    call    C_WRITE                         ;[030d] cd eb 01    Prints ' ' to CRT
+    ld      a,$2a                           ;[0310] 3e 2a
+    call    C_WRITE                         ;[0312] cd eb 01    Prints '*' to CRT
+    ld      a,$06                           ;[0315] 3e 06
+    call    SIO_WRITE_WRAPPER               ;[0317] cd 09 01    Send acknowledge to SIO
+    jp      RCV_FIRST                       ;[031a] c3 34 04    Wait for new file
+
+; This routine gets 12 bytes from the SIO containing the filename and extension
+; followed by 0x03 (end of text)
+GET_FILENAME:
+    ld      c,$0c                           ;[031d] 0e 0c       
+    ld      hl,$01bd                        ;[031f] 21 bd 01
+; This loop will be executed 12 times
+GET_FILENAME_LOOP:
+    call    SIO_READ_WRAPPER                ;[0322] cd 0c 01    Read value from SIO (=A)
+    and     $7f                             ;[0325] e6 7f       Remove parity (?) (Not needed for ASCII anyway)
+    cp      $03                             ;[0327] fe 03       
+    jp      z,END_FILENAME                  ;[0329] ca 33 03    Check for END OF TEXT (0x03)
+    ld      (hl),a                          ;[032c] 77          (HL) = A        
+    inc     hl                              ;[032d] 23          HL++
+    dec     c                               ;[032e] 0d          C--
+    jp      nz,GET_FILENAME_LOOP            ;[032f] c2 22 03    Loop if C!=0
+    ret                                     ;[0332] c9
+END_FILENAME:
+    ld      de,$01ac                        ;[0333] 11 ac 01    
+    ld      hl,$01bc                        ;[0336] 21 bc 01
+    ld      bc,$0009                        ;[0339] 01 09 00
+    ldir                                    ;[033c] ed b0          Move 9 bytes from $01bc to $01ac
+    ld      hl,$01b5                        ;[033e] 21 b5 01       
+    ld      (hl),$24                        ;[0341] 36 24          ($01b5) = $24
+    inc     hl                              ;[0343] 23
+    ld      (hl),$24                        ;[0344] 36 24          ($01b6) = $24
+    inc     hl                              ;[0346] 23
+    ld      (hl),$24                        ;[0347] 36 24          ($01b7) = $24
+    ret                                     ;[0349] c9
+
+
+;=======================
+;   ERROR MESSAGES
+;=======================
+
+FILE_NAME_ERROR:
+    call    PRINT_NEXT_STR                  ;[034a] cd df 01
+    DB $0D                                  ;[034d] 0d
+    DB $0A                                  ;[034e] 0a
+    .ASCII "File name error"                ;[034f] 
+    DB $00                                  ;[035e] 00
+    ld      a,$0d                           ;[035f] 3e 0d
+    call    SIO_WRITE_WRAPPER               ;[0361] cd 09 01
+    jp      RCV_FIRST                       ;[0364] c3 34 04  
+
+DIR_FULL_ERROR:
+    call    PRINT_NEXT_STR                  ;[0367] cd df 01
+    DB $0D                                  ;[036a] 0d
+    DB $0A                                  ;[036b] 0a
+    .ASCII "Directory full"                 ;[036c] 
+    DB $00                                  ;[037a] 00
+    ld      a,$0d                           ;[037b] 3e 0d
+    call    SIO_WRITE_WRAPPER               ;[037d] cd 09 01
+    jp      RCV_FIRST                       ;[0380] c3 34 04
+
+FILE_TRANSFER_ERROR:
+    call    PRINT_NEXT_STR                  ;[0383] cd df 01
+    DB $0D                                  ;[0386] 0d
+    DB $0A                                  ;[0387] 0a
+    .ASCII "File transfer error"            ;[0388]
+    nop                                     ;[039b] 00
+    ld      a,$0d                           ;[039c] 3e 0d
+    call    SIO_WRITE_WRAPPER               ;[039e] cd 09 01
+    jp      RCV_FIRST                       ;[03a1] c3 34 04
+
+FILE_WRITE_ERROR:
+    call    PRINT_NEXT_STR                  ;[03a4] cd df 01
+    DB $0D                                  ;[03a7] 0d
+    DB $0a                                  ;[03a8] 0a
+    .ASCII "File write error"               ;[03a9] 46
+    DB $00                                  ;[03b9] 00
+    ld      a,$0d                           ;[03ba] 3e 0d
+    call    SIO_WRITE_WRAPPER               ;[03bc] cd 09 01
+    jp      RCV_FIRST                       ;[03bf] c3 34 04
+
+CLOSING_ERROR:
+    call    PRINT_NEXT_STR                  ;[03c2] cd df 01
+    DB $0D                                  ;[03c5] 0d
+    DB $0A                                  ;[03c6] 0a
+    .ASCII "Closing error"                  ;[03c7] 
+    DB $00                                  ;[03d4] 00
+    ld      a,$0d                           ;[03d5] 3e 0d
+    call    SIO_WRITE_WRAPPER               ;[03d7] cd 09 01
+    jp      RCV_FIRST                       ;[03da] c3 34 04
+
+FILE_ERROR:
+    call    PRINT_NEXT_STR                  ;[03dd] cd df 01
+    DB $0D                                  ;[03e0] 0d
+    DB $0A                                  ;[03e1] 0a
+    .ASCII "File error"                     ;[03e2]
+    DB $00                                  ;[03ec] 00
+    ld      a,$0d                           ;[03ed] 3e 0d
+    call    SIO_WRITE_WRAPPER               ;[03ef] cd 09 01
+    jp      RCV_FIRST                       ;[03f2] c3 34 04
+
+
+RENAME_ERROR:
+    call    PRINT_NEXT_STR                  ;[03f5] cd df 01
+    DB $0D                                  ;[03f8] 0d
+    DB $0A                                  ;[03f9] 0a
+    .ASCII "Rename error"                   ;[03fa]
+    DB $00                                  ;[0406] 00
+    ld      a,$0d                           ;[0407] 3e 0d
+    call    SIO_WRITE_WRAPPER               ;[0409] cd 09 01
+    jp      RCV_FIRST                       ;[040c] c3 34 04
+
+;=======================
+
+; This routine:
+;       1) prints a new line (CR,LF) 
+;       2) prints 8 bytes starting from (de+1)
+;       3) prints '.'
+;       4) prints 3 bytes located after the previous 8 bytes
+; i.e. prints a filename on the CRT  
+PRINT_FILENAME:
+    ld      a,$0d                           ;[040f] 3e 0d
+    call    C_WRITE                         ;[0411] cd eb 01    Print 'Carriage return' to CRT
+    ld      a,$0a                           ;[0414] 3e 0a
+    call    C_WRITE                         ;[0416] cd eb 01    Print 'Line feed' to CRT
+    ex      de,hl                           ;[0419] eb          
+    inc     hl                              ;[041a] 23
+    ld      b,$08                           ;[041b] 06 08
+    .PRINT_NAME:
+        ld      a,(hl)                      ;[041d] 7e          A = (HL)
+        call    C_WRITE                     ;[041e] cd eb 01    Print A to CRT
+        inc     hl                          ;[0421] 23          HL++
+        djnz    .PRINT_NAME                 ;[0422] 10 f9       Decrement B and if B!=$00 jump. (Will jump 8 times)
+    ld      a,$2e                           ;[0424] 3e 2e
+    call    C_WRITE                         ;[0426] cd eb 01    Print '.'
+    ld      b,$03                           ;[0429] 06 03  
+    .PRINT_EXT:     
+        ld      a,(hl)                      ;[042b] 7e          A = (HL)
+        call    C_WRITE                     ;[042c] cd eb 01    Print A to CRT
+        inc     hl                          ;[042f] 23          HL++
+        djnz    .PRINT_EXT                  ;[0430] 10 f9       B-- and jump if B!=$00 (Will jump 3 times)
+    ex      de,hl                           ;[0432] eb
+    ret                                     ;[0433] c9
+
+; This receives the first character of a transmission and act accordingly
+RCV_FIRST:
+    call    SIO_READ_WRAPPER                ;[0434] cd 0c 01    Read an input character from the SIO (=A)
+    cp      $18                             ;[0437] fe 18       
+    jp      z,TRANSMISSION_END              ;[0439] ca 9a 02    If A=$18 then end transmission and exit program
+    cp      $11                             ;[043c] fe 11       
+    jp      z,RCV_FIRST_WRAPPER             ;[043e] ca b9 02    Skip loop if A=$11
+    cp      $02                             ;[0441] fe 02
+    jp      z,RCV_SETUP                     ;[0443] ca bc 02    If A=$02 then ready to transmit a file    
+    cp      $12                             ;[0446] fe 12
+    call    z,SIO_SETUP_WRAPPER             ;[0448] cc 06 01    if A=$12 jump
+    jp      RCV_FIRST                       ;[044b] c3 34 04
+
+; Sends to port $b1 data from $0458 to $0460 (SIO SETUP)
+SIO_SETUP:
+    ld      c,$b1                           ;[044e] 0e b1       Output port 
+    ld      b,$09                           ;[0450] 06 09       Number of repetitions
+    ld      hl,SIO_SETUP_COMMANDS           ;[0452] 21 58 04    Starting address
+    otir                                    ;[0455] ed b3
+    ret                                     ;[0457] c9
+
+SIO_SETUP_COMMANDS:
+    DB $18          ; [0458] 18         ; Reset channel 0
+    DB $04          ; [0459] 04         ; Access WR4
+    DB $4c          ; [045A] 4c         ; Parity Disabled, 2 stop bits (?), 8 bit sync,Data Rate x16 = Clock rate
+    DB $01          ; [045B] 01         ; Access WR1
+    DB $00          ; [045C] 00         ; Disable all interrupts
+    DB $05          ; [045D] 05         ; Access WR5
+    DB $ea          ; [045E] ea         ; TX CRC disabled, RTS enabled, CRC-16 disabled, Transmit enabled, Send break disabled, 8 bits/character, dtr enabled
+    DB $03          ; [045F] 03         ; Access WR3
+    DB $c1          ; [0460] c1         ; Receive enabled, the rest disabled, 8 bits/character
+
+; Write the character stored in the A register to port B of the SIO (Blocks until can transmit)
+SIO_WRITE:
+    push af                                 ;[0461] f5
+.SIO_WRITE_LOOP:
+    in      a,($b1)                         ;[0462] db b1
+    and     $04                             ;[0464] e6 04
+    jp      z,.SIO_WRITE_LOOP               ;[0466] ca 62 04    Loop until SIO is ready to transmit
+    pop     af                              ;[0469] f1
+    out     ($b0),a                         ;[046a] d3 b0       Write A to SIO
+    ret                                     ;[046c] c9
+
+; Receive a character from the SIO and stores it in A (it blocks until there is something available to read)
+SIO_READ:
+    in      a,($b1)                         ;[046d] db b1       
+    and     $01                             ;[046f] e6 01       Check if character is available to read
+    jp      z,SIO_READ                      ;[0471] ca 6d 04    Loop if not
+    in      a,($b0)                         ;[0474] db b0       Read character from SIO into A
+    ret                                     ;[0476] c9
+
+; From now on this is unused 
+
+ld      bc,$0a0d                        ;[0477] 01 0d 0a
+ld      d,d                             ;[047a] 52
+ld      h,l                             ;[047b] 65
+ld      l,(hl)                          ;[047c] 6e
+ld      h,c                             ;[047d] 61
+ld      l,l                             ;[047e] 6d
+ld      h,l                             ;[047f] 65
+ld      (bc),a                          ;[0480] 02
+cp      $43                             ;[0481] fe 43
+jp      nz,$0296                        ;[0483] c2 96 02
+call    $0145                           ;[0486] cd 45 01
+or      $04                             ;[0489] f6 04
+call    $0151                           ;[048b] cd 51 01
+ld      a,c                             ;[048e] 79
+call    $0151                           ;[048f] cd 51 01
+ld      a,b                             ;[0492] 78
+jp      $0151                           ;[0493] c3 51 01
+cp      $52                             ;[0496] fe 52
+jp      nz,$0518                        ;[0498] c2 18 05
+call    $011d                           ;[049b] cd 1d 01
+or      $c0                             ;[049e] f6 c0
+jp      $0151                           ;[04a0] c3 51 01
+ld      hl,($000e)                      ;[04a3] 2a 0e 00
+push    de                              ;[04a6] d5
+ex      de,hl                           ;[04a7] eb
+ld      hl,($000c)                      ;[04a8] 2a 0c 00
+ld      a,e                             ;[04ab] 7b
+sub     l                               ;[04ac] 95
+ld      a,d                             ;[04ad] 7a
+sbc     h                               ;[04ae] 9c
+jp      nc,$02b7                        ;[04af] d2 b7 02
+ld      hl,($0013)                      ;[04b2] 2a 13 00
+ld      sp,hl                           ;[04b5] f9
+ret                                     ;[04b6] c9
+
+pop     de                              ;[04b7] d1
+ld      a,(hl)                          ;[04b8] 7e
+inc     hl                              ;[04b9] 23
+ld      ($000c),hl                      ;[04ba] 22 0c 00
+ret                                     ;[04bd] c9
+
+inc     a                               ;[04be] 3c
+and     $07                             ;[04bf] e6 07
+cp      $06                             ;[04c1] fe 06
+jp      c,$02c8                         ;[04c3] da c8 02
+add     $03                             ;[04c6] c6 03
+cp      $05                             ;[04c8] fe 05
+jp      c,$02cf                         ;[04ca] da cf 02
+add     $02                             ;[04cd] c6 02
+add     $41                             ;[04cf] c6 41
+ld      c,a                             ;[04d1] 4f
+jp      $0015                           ;[04d2] c3 15 00
+ld      b,a                             ;[04d5] 47
+and     $f0                             ;[04d6] e6 f0
+rrca                                    ;[04d8] 0f
+rrca                                    ;[04d9] 0f
+rrca                                    ;[04da] 0f
+rrca                                    ;[04db] 0f
+add     $90                             ;[04dc] c6 90
+daa                                     ;[04de] 27
+adc     $40                             ;[04df] ce 40
+daa                                     ;[04e1] 27
+ld      c,a                             ;[04e2] 4f
+call    $0015                           ;[04e3] cd 15 00
+ld      a,b                             ;[04e6] 78
+and     $0f                             ;[04e7] e6 0f
+add     $90                             ;[04e9] c6 90
+daa                                     ;[04eb] 27
+adc     $40                             ;[04ec] ce 40
+daa                                     ;[04ee] 27
+ld      c,a                             ;[04ef] 4f
+jp      $0015                           ;[04f0] c3 15 00
+ld      b,$04                           ;[04f3] 06 04
+ld      c,(hl)                          ;[04f5] 4e
+call    $0015                           ;[04f6] cd 15 00
+inc     hl                              ;[04f9] 23
+dec     b                               ;[04fa] 05
+jp      nz,$02f5                        ;[04fb] c2 f5 02
+ld      c,$20                           ;[04fe] 0e 20
+jp      $0015                           ;[0500] c3 15 00
+ld      a,d                             ;[0503] 7a
+and     $38                             ;[0504] e6 38
+rrca                                    ;[0506] 0f
+rrca                                    ;[0507] 0f
+rrca                                    ;[0508] 0f
+ret                                     ;[0509] c9
+
+call    $0303                           ;[050a] cd 03 03
+add     a                               ;[050d] 87
+ld      c,a                             ;[050e] 4f
+ld      hl,$0642                        ;[050f] 21 42 06
+add     hl,bc                           ;[0512] 09
+ld      c,(hl)                          ;[0513] 4e
+call    $0015                           ;[0514] cd 15 00
+inc     hl                              ;[0517] 23
+ld      c,(hl)                          ;[0518] 4e
+call    $0015                           ;[0519] cd 15 00
+ld      c,$20                           ;[051c] 0e 20
+call    $0015                           ;[051e] cd 15 00
+jp      $0015                           ;[0521] c3 15 00
+call    $0303                           ;[0524] cd 03 03
+and     $06                             ;[0527] e6 06
+cp      $06                             ;[0529] fe 06
+jp      nz,$02be                        ;[052b] c2 be 02
+ld      c,$53                           ;[052e] 0e 53
+call    $0015                           ;[0530] cd 15 00
+ld      c,$50                           ;[0533] 0e 50
+jp      $0015                           ;[0535] c3 15 00
+call    $002e                           ;[0538] cd 2e 00
+ld      hl,($000c)                      ;[053b] 2a 0c 00
+ld      a,h                             ;[053e] 7c
+call    $02d5                           ;[053f] cd d5 02
+ld      a,l                             ;[0542] 7d
+call    $02d5                           ;[0543] cd d5 02
+ld      c,$20                           ;[0546] 0e 20
+call    $0015                           ;[0548] cd 15 00
+call    $0015                           ;[054b] cd 15 00
+ret                                     ;[054e] c9
+
+ld      hl,$0000                        ;[054f] 21 00 00
+add     hl,sp                           ;[0552] 39
+ld      ($0013),hl                      ;[0553] 22 13 00
+ld      a,($0010)                       ;[0556] 3a 10 00
+or      a                               ;[0559] b7
+jp      z,$0371                         ;[055a] ca 71 03
+ld      hl,$ffff                        ;[055d] 21 ff ff
+ld      ($000e),hl                      ;[0560] 22 0e 00
+inc     a                               ;[0563] 3c
+jp      nz,$0371                        ;[0564] c2 71 03
+inc     a                               ;[0567] 3c
+ld      ($0010),a                       ;[0568] 32 10 00
+ld      hl,($000c)                      ;[056b] 2a 0c 00
+jp      $0397                           ;[056e] c3 97 03
+call    $069e                           ;[0571] cd 9e 06
+jp      nz,$0540                        ;[0574] c2 40 05
+ld      hl,$0010                        ;[0577] 21 10 00
+ld      a,(hl)                          ;[057a] 7e
+or      a                               ;[057b] b7
+jp      z,FILE_TRANSFER_ERROR                         ;[057c] ca 83 03
+dec     (hl)                            ;[057f] 35
+jp      z,$0540                         ;[0580] ca 40 05
+ld      hl,($000c)                      ;[0583] 2a 0c 00
+call    $06a1                           ;[0586] cd a1 06
+call    $002e                           ;[0589] cd 2e 00
+ld      c,$20                           ;[058c] 0e 20
+call    $0015                           ;[058e] cd 15 00
+call    $0015                           ;[0591] cd 15 00
+call    $033b                           ;[0594] cd 3b 03
+call    $02a3                           ;[0597] cd a3 02
+ld      d,a                             ;[059a] 57
+ld      hl,$0545                        ;[059b] 21 45 05
+ld      bc,$0011                        ;[059e] 01 11 00
+cp      (hl)                            ;[05a1] be
+jp      z,$04fd                         ;[05a2] ca fd 04
+inc     hl                              ;[05a5] 23
+dec     c                               ;[05a6] 0d
+jp      nz,$03a1                        ;[05a7] c2 a1 03
+ld      c,$0a                           ;[05aa] 0e 0a
+cp      (hl)                            ;[05ac] be
+jp      z,$04e9                         ;[05ad] ca e9 04
+inc     hl                              ;[05b0] 23
+dec     c                               ;[05b1] 0d
+jp      nz,$03ac                        ;[05b2] c2 ac 03
+ld      c,$06                           ;[05b5] 0e 06
+cp      (hl)                            ;[05b7] be
+jp      z,$04ce                         ;[05b8] ca ce 04
+inc     hl                              ;[05bb] 23
+dec     c                               ;[05bc] 0d
+jp      nz,$03b7                        ;[05bd] c2 b7 03
+and     $c0                             ;[05c0] e6 c0
+cp      $40                             ;[05c2] fe 40
+jp      z,$04b4                         ;[05c4] ca b4 04
+cp      $80                             ;[05c7] fe 80
+jp      z,$04a5                         ;[05c9] ca a5 04
+ld      a,d                             ;[05cc] 7a
+and     $c7                             ;[05cd] e6 c7
+sub     $04                             ;[05cf] d6 04
+jp      z,$0496                         ;[05d1] ca 96 04
+dec     a                               ;[05d4] 3d
+jp      z,$0490                         ;[05d5] ca 90 04
+dec     a                               ;[05d8] 3d
+jp      z,$047c                         ;[05d9] ca 7c 04
+ld      a,d                             ;[05dc] 7a
+and     $c0                             ;[05dd] e6 c0
+jp      z,$044a                         ;[05df] ca 4a 04
+ld      a,d                             ;[05e2] 7a
+and     $07                             ;[05e3] e6 07
+jp      z,$043f                         ;[05e5] ca 3f 04
+sub     $02                             ;[05e8] d6 02
+jp      z,RCV_FIRST                         ;[05ea] ca 34 04
+sub     $02                             ;[05ed] d6 02
+jp      z,$0429                         ;[05ef] ca 29 04
+sub     $03                             ;[05f2] d6 03
+jp      z,$041a                         ;[05f4] ca 1a 04
+ld      a,d                             ;[05f7] 7a
+and     $08                             ;[05f8] e6 08
+jp      nz,$050b                        ;[05fa] c2 0b 05
+ld      a,d                             ;[05fd] 7a
+and     $07                             ;[05fe] e6 07
