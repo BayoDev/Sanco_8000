@@ -1,3 +1,9 @@
+; This is the disassembly of the "FMT8003.COM" program for the Sanco 8003         
+; found in the CP/M 2.2 image at this link:
+;       https://archive.org/details/sanco-8003-cpm-2.2fr.dsqd
+;
+; By @BayoDev
+
 ORG $0100
 
 ld      sp,$0100                        ;[0100] 31 00 01
