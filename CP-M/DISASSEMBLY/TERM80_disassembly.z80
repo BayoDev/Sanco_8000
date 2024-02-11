@@ -1,0 +1,2160 @@
+; This is the disassembly of the "TERM80.COM" program for the Sanco 8003         
+; found in the CP/M 2.2 image at this link:
+;       https://archive.org/details/sanco-8003-cpm-2.2fr.dsqd
+;
+; By @BayoDev
+;
+; THIS IS NOT COMPLETE, MANY PARTS OF THE CODE REMAIN UNEXPLAINED AND SOME UNREACHABLE
+
+
+org $0100
+
+CPM_ENTRY:
+    jp      ENTRY_POINT                ;[0100] c3 d2 01
+
+rst     $38                             ;[0103] ff
+nop                                     ;[0104] 00
+nop                                     ;[0105] 00
+ld      sp,$3239                        ;[0106] 31 39 32
+jr      nc,$013b                        ;[0109] 30 30
+jr      nc,$013f                        ;[010b] 30 32
+ld      sp,$2c30                        ;[010d] 31 30 2c
+ld      d,e                             ;[0110] 53
+ld      b,c                             ;[0111] 41
+ld      c,(hl)                          ;[0112] 4e
+ld      b,e                             ;[0113] 43
+ld      c,a                             ;[0114] 4f
+dec     c                               ;[0115] 0d
+
+DB $b1                                  ;[0116] b1          Serial port device number (CONTROL)
+DB $01                                  ;[0117] 01          Bit mask for SIO's RR0 "Receive Character Available"
+DB $04                                  ;[0118] 04          Bit mask for SIO's RR0 "Transmit Buffer Empty" (bit set=empty buffer)
+DB $b0                                  ;[0119] b0          Serial port device number (DATA)
+
+inc     h                               ;[011a] 24
+ld      bc,$0010                        ;[011b] 01 10 00
+nop                                     ;[011e] 00
+nop                                     ;[011f] 00
+nop                                     ;[0120] 00
+nop                                     ;[0121] 00
+nop                                     ;[0122] 00
+nop                                     ;[0123] 00
+nop                                     ;[0124] 00
+nop                                     ;[0125] 00
+nop                                     ;[0126] 00
+nop                                     ;[0127] 00
+nop                                     ;[0128] 00
+nop                                     ;[0129] 00
+nop                                     ;[012a] 00
+nop                                     ;[012b] 00
+nop                                     ;[012c] 00
+nop                                     ;[012d] 00
+nop                                     ;[012e] 00
+nop                                     ;[012f] 00
+nop                                     ;[0130] 00
+inc     h                               ;[0131] 24
+dec     d                               ;[0132] 15
+ld      e,$19                           ;[0133] 1e 19
+nop                                     ;[0135] 00
+jr      $0138                           ;[0136] 18 00
+rla                                     ;[0138] 17
+ld      a,(de)                          ;[0139] 1a
+nop                                     ;[013a] 00
+nop                                     ;[013b] 00
+nop                                     ;[013c] 00
+nop                                     ;[013d] 00
+nop                                     ;[013e] 00
+nop                                     ;[013f] 00
+nop                                     ;[0140] 00
+nop                                     ;[0141] 00
+nop                                     ;[0142] 00
+nop                                     ;[0143] 00
+nop                                     ;[0144] 00
+nop                                     ;[0145] 00
+inc     h                               ;[0146] 24
+nop                                     ;[0147] 00
+nop                                     ;[0148] 00
+nop                                     ;[0149] 00
+nop                                     ;[014a] 00
+nop                                     ;[014b] 00
+nop                                     ;[014c] 00
+nop                                     ;[014d] 00
+nop                                     ;[014e] 00
+nop                                     ;[014f] 00
+nop                                     ;[0150] 00
+nop                                     ;[0151] 00
+nop                                     ;[0152] 00
+nop                                     ;[0153] 00
+nop                                     ;[0154] 00
+nop                                     ;[0155] 00
+nop                                     ;[0156] 00
+nop                                     ;[0157] 00
+nop                                     ;[0158] 00
+nop                                     ;[0159] 00
+nop                                     ;[015a] 00
+nop                                     ;[015b] 00
+nop                                     ;[015c] 00
+nop                                     ;[015d] 00
+nop                                     ;[015e] 00
+nop                                     ;[015f] 00
+
+DB $00                                  ;[0160] 00    Printer echo activation ($00=Disabled,otherwise enabled)
+DB $00                                  ;[0161] 00
+DB $CD                                  ;[0162] cd 
+DB $00                                  ;[0163] 00
+DB $00                                  ;[0164] 00
+
+nop                                     ;[0165] 00
+nop                                     ;[0166] 00
+nop                                     ;[0167] 00
+nop                                     ;[0168] 00
+nop                                     ;[0169] 00
+nop                                     ;[016a] 00
+nop                                     ;[016b] 00
+nop                                     ;[016c] 00
+nop                                     ;[016d] 00
+nop                                     ;[016e] 00
+nop                                     ;[016f] 00
+nop                                     ;[0170] 00
+nop                                     ;[0171] 00
+nop                                     ;[0172] 00
+nop                                     ;[0173] 00
+nop                                     ;[0174] 00
+nop                                     ;[0175] 00
+nop                                     ;[0176] 00
+nop                                     ;[0177] 00
+nop                                     ;[0178] 00
+nop                                     ;[0179] 00
+nop                                     ;[017a] 00
+nop                                     ;[017b] 00
+nop                                     ;[017c] 00
+nop                                     ;[017d] 00
+nop                                     ;[017e] 00
+nop                                     ;[017f] 00
+nop                                     ;[0180] 00
+nop                                     ;[0181] 00
+nop                                     ;[0182] 00
+nop                                     ;[0183] 00
+nop                                     ;[0184] 00
+nop                                     ;[0185] 00
+nop                                     ;[0186] 00
+nop                                     ;[0187] 00
+nop                                     ;[0188] 00
+nop                                     ;[0189] 00
+nop                                     ;[018a] 00
+nop                                     ;[018b] 00
+nop                                     ;[018c] 00
+nop                                     ;[018d] 00
+nop                                     ;[018e] 00
+nop                                     ;[018f] 00
+nop                                     ;[0190] 00
+nop                                     ;[0191] 00
+nop                                     ;[0192] 00
+nop                                     ;[0193] 00
+nop                                     ;[0194] 00
+nop                                     ;[0195] 00
+nop                                     ;[0196] 00
+nop                                     ;[0197] 00
+nop                                     ;[0198] 00
+nop                                     ;[0199] 00
+nop                                     ;[019a] 00
+nop                                     ;[019b] 00
+nop                                     ;[019c] 00
+nop                                     ;[019d] 00
+nop                                     ;[019e] 00
+nop                                     ;[019f] 00
+nop                                     ;[01a0] 00
+nop                                     ;[01a1] 00
+nop                                     ;[01a2] 00
+nop                                     ;[01a3] 00
+nop                                     ;[01a4] 00
+nop                                     ;[01a5] 00
+nop                                     ;[01a6] 00
+nop                                     ;[01a7] 00
+nop                                     ;[01a8] 00
+nop                                     ;[01a9] 00
+nop                                     ;[01aa] 00
+nop                                     ;[01ab] 00
+nop                                     ;[01ac] 00
+nop                                     ;[01ad] 00
+nop                                     ;[01ae] 00
+nop                                     ;[01af] 00
+nop                                     ;[01b0] 00
+nop                                     ;[01b1] 00
+nop                                     ;[01b2] 00
+nop                                     ;[01b3] 00
+nop                                     ;[01b4] 00
+nop                                     ;[01b5] 00
+nop                                     ;[01b6] 00
+nop                                     ;[01b7] 00
+nop                                     ;[01b8] 00
+nop                                     ;[01b9] 00
+nop                                     ;[01ba] 00
+nop                                     ;[01bb] 00
+nop                                     ;[01bc] 00
+nop                                     ;[01bd] 00
+nop                                     ;[01be] 00
+nop                                     ;[01bf] 00
+nop                                     ;[01c0] 00
+nop                                     ;[01c1] 00
+nop                                     ;[01c2] 00
+nop                                     ;[01c3] 00
+nop                                     ;[01c4] 00
+nop                                     ;[01c5] 00
+
+; A = {$FF = console device ready, $00 otherwise}
+CONSOLE_READY: 
+    jp      $01c6                       ;[01c6] c3 c6 01      After SETUP routine jumps to CONST BIOS entry
+
+; A = console character ; Wait until the character is ready
+CONSOLE_INPUT: 
+    jp      $01c9                       ;[01c9] c3 c9 01      After SETUP routine jumps to CONIN BIOS entry
+
+;The character is sent from register C to the console output device. The character is in ASCII, with high-order parity bit set to zero. 
+CONSOLE_OUTPUT:
+    jp      $01cc                       ;[01cc] c3 cc 01      After SETUP routine jumps to CONOUT BIOS entry
+
+; You return the ready status of the list device used by the DESPOOL program to improve console response during its operation. 
+; The value 00 is returned in A if the list device is not ready to accept a character and 0FFH if a character can be sent to the printer.
+; A 00 value should be returned if LIST status is not implemented.
+LIST_STATUS:
+    jp      $01cf                       ;[01cf] c3 cf 01      After SETUP routine jumps to WRITE BIOS entry
+
+ENTRY_POINT:
+    ld      sp,$0820                    ;[01d2] 31 20 08
+    call    L02B0                       ;[01d5] cd b0 02
+    jp      STARTUP                     ;[01d8] c3 0d 02
+
+call    SERIAL_READY_SIGNAL             ;[01db] cd 29 03
+call    SERIAL_NOT_READY_SIGNAL         ;[01de] cd 36 03
+call    CONSOLE_INPUT                   ;[01e1] cd c9 01
+call    $027f                           ;[01e4] cd 7f 02
+
+cp      $04                             ;[01e7] fe 04
+jp      z,ENTRY_POINT                   ;[01e9] ca d2 01
+cp      $14                             ;[01ec] fe 14
+jp      z,STARTUP                       ;[01ee] ca 0d 02
+cp      $0c                             ;[01f1] fe 0c
+jp      z,$03ba                         ;[01f3] ca ba 03
+cp      $17                             ;[01f6] fe 17
+jp      z,$03ab                         ;[01f8] ca ab 03
+cp      $03                             ;[01fb] fe 03
+jp      z,$037a                         ;[01fd] ca 7a 03
+cp      $01                             ;[0200] fe 01
+jp      z,$0961                         ;[0202] ca 61 09
+cp      $0d                             ;[0205] fe 0d
+jp      z,$0898                         ;[0207] ca 98 08
+jp      $01db                           ;[020a] c3 db 01
+
+STARTUP:
+    ld      de,INIT_STRING                  ;[020d] 11 63 0e
+    call    C_WRITESTR                      ;[0210] cd 4d 08
+MAIN_LOOP:
+    call    SERIAL_READY_SIGNAL             ;[0213] cd 29 03    Setup SIO ready for data
+    call    SERIAL_IN_AVAIL                 ;[0216] cd ba 0a    Check if there is a character to read from the SIO
+    jp      nz,GET_INPUT                    ;[0219] c2 2f 02    Jump if a character is ready to be read from the SIO
+    call    SERIAL_NOT_READY_SIGNAL         ;[021c] cd 36 03    Setup SIO not ready for data
+    call    CONSOLE_READY                   ;[021f] cd c6 01    Check TTY status 
+    or      a                               ;[0222] b7
+    jp      z,MAIN_LOOP                     ;[0223] ca 13 02    Jump if there is no character to read
+    call    CONSOLE_INPUT                   ;[0226] cd c9 01    Get character from TTY
+    call    SERIAL_OUT                      ;[0229] cd d0 0a    Send character through serial
+    jp      MAIN_LOOP                       ;[022c] c3 13 02
+
+GET_INPUT:
+    call    SERIAL_IN                       ;[022f] cd c8 0a    A = serial in
+    cp      $12                             ;[0232] fe 12
+    jr      nz,PROCESS_ASCII                ;[0234] 20 19       Jump if A!=$12 (DC2) (Could be used to indicate activation of communication)
+    ; Assuming $0161 is not modified elsewhere the first time that $12 is received
+    ; it wont call ACTIVATE_PRINTER, but then it wil for the next 255 times that $12 is received (?)
+    ld      a,($0161)                       ;[0236] 3a 61 01    
+    or      a                               ;[0239] b7
+    jr      nz,ACTIVATE_PRINTER             ;[023a] 20 0b       Jump if ($0161)!=0
+    dec     a                               ;[023c] 3d
+    ld      ($0161),a                       ;[023d] 32 61 01    ($0161) = $FF ($0-$1=$FF (?))
+    xor     a                               ;[0240] af          A = $00
+    call    SERIAL_OUT                      ;[0241] cd d0 0a        
+    jp      MAIN_LOOP                       ;[0244] c3 13 02
+
+ACTIVATE_PRINTER:
+    ld      a,$01                           ;[0247] 3e 01
+    ld      ($0160),a                       ;[0249] 32 60 01    Activate printer (i.e. ($0160)=$01)
+    jp      MAIN_LOOP                       ;[024c] c3 13 02
+
+
+; Process the input ascii character (in register A) and prints it in the CRT (and printer if set)
+PROCESS_ASCII:
+    cp      $07                             ;[024f] fe 07
+    jp      c,MAIN_LOOP                     ;[0251] da 13 02    $00<=A<$07 ==> Not printable
+    cp      $0e                             ;[0254] fe 0e   
+    jp      c,VALID_ASCII                   ;[0256] da 5e 02    $07<=A<$0e ==> Valid (Cursor controls i.e. tab, line feed, etc.)
+    cp      $1a                             ;[0259] fe 1a
+    jp      c,MAIN_LOOP                     ;[025b] da 13 02    $0e<=A<$1a ==> Not printable
+VALID_ASCII:                                                    
+    ld      c,a                             ;[025e] 4f          The value of A can only be an ascii between ($07<=A<$0e) U ($A1<=A)
+    ld      a,($0160)                       ;[025f] 3a 60 01
+    or      a                               ;[0262] b7
+    jr      nz,LINE_DEVICE_WRITE            ;[0263] 20 07       Jump if ($0160)!=0 (i.e. Jump if printer is enabled)
+    ld      e,c                             ;[0265] 59          
+    call    C_OUT                           ;[0266] cd 47 08    Output character to CRT
+    jp      MAIN_LOOP                       ;[0269] c3 13 02
+
+
+; Output character stored in C to the LINE device (printer) and returns to main loop
+LINE_DEVICE_WRITE:
+    ld      e,c                             ;[026c] 59
+    ld      c,$05                           ;[026d] 0e 05
+    call    SYSCALL                         ;[026f] cd 20 08
+    xor     a                               ;[0272] af
+    ld      ($0160),a                       ;[0273] 32 60 01    Disable printer again (???)
+    call    SERIAL_OUT                      ;[0276] cd d0 0a
+    jp      MAIN_LOOP                       ;[0279] c3 13 02
+
+DB $00                                     ;[027c] 00   Is set to $10BF by the SETUP routine
+DB $00                                     ;[027d] 00
+DB $00                                     ;[027e] 00
+ret                                        ;[027f] c9
+
+cp      $61                             ;[0280] fe 61
+ret     c                               ;[0282] d8
+cp      $7b                             ;[0283] fe 7b
+ret     nc                              ;[0285] d0
+and     $5f                             ;[0286] e6 5f
+ret                                     ;[0288] c9
+
+nop                                     ;[0289] 00
+ld      c,a                             ;[028a] 4f
+ld      a,(hl)                          ;[028b] 7e
+inc     hl                              ;[028c] 23
+cp      $24                             ;[028d] fe 24
+jr      z,$0299                         ;[028f] 28 08
+cp      c                               ;[0291] b9
+jr      z,$0297                         ;[0292] 28 03
+inc     hl                              ;[0294] 23
+jr      $028b                           ;[0295] 18 f4
+ld      a,(hl)                          ;[0297] 7e
+ret                                     ;[0298] c9
+
+ld      a,c                             ;[0299] 79
+ret                                     ;[029a] c9
+
+ld      hl,$0147                        ;[029b] 21 47 01
+ld      a,(hl)                          ;[029e] 7e
+inc     hl                              ;[029f] 23
+or      a                               ;[02a0] b7
+jr      z,$02a9                         ;[02a1] 28 06
+cp      c                               ;[02a3] b9
+jr      z,$02a9                         ;[02a4] 28 03
+inc     hl                              ;[02a6] 23
+jr      $029e                           ;[02a7] 18 f5
+ld      a,(hl)                          ;[02a9] 7e
+ld      c,a                             ;[02aa] 4f
+xor     a                               ;[02ab] af
+ld      ($027e),a                       ;[02ac] 32 7e 02
+ret                                     ;[02af] c9
+
+L02B0:
+    jp      SETUP                           ;[02b0] c3 df 02
+
+ld      a,($0103)                       ;[02b3] 3a 03 01
+or      a                               ;[02b6] b7
+jr      nz,$02c1                        ;[02b7] 20 08
+ld      de,$0cf3                        ;[02b9] 11 f3 0c
+call    C_WRITESTR                           ;[02bc] cd 4d 08
+jr      $02c7                           ;[02bf] 18 06
+ld      de,$0cda                        ;[02c1] 11 da 0c
+call    C_WRITESTR                           ;[02c4] cd 4d 08
+ld      a,($0104)                       ;[02c7] 3a 04 01
+or      a                               ;[02ca] b7
+jr      nz,$02d6                        ;[02cb] 20 09
+ld      de,$0d23                        ;[02cd] 11 23 0d
+call    C_WRITESTR                           ;[02d0] cd 4d 08
+jp      $0344                           ;[02d3] c3 44 03
+ld      de,$0d0c                        ;[02d6] 11 0c 0d
+call    C_WRITESTR                           ;[02d9] cd 4d 08
+jp      $0351                           ;[02dc] c3 51 03
+
+SETUP:
+    ld      hl,($0001)                      ;[02df] 2a 01 00
+    ld      de,$0003                        ;[02e2] 11 03 00
+    add     hl,de                           ;[02e5] 19
+    ld      ($01c7),hl                      ;[02e6] 22 c7 01    ($01C7) = ($0001) + $0003 (CONST) 
+    add     hl,de                           ;[02e9] 19
+    ld      ($01ca),hl                      ;[02ea] 22 ca 01    ($01CA) = ($0001) + $0006 (CONIN)
+    add     hl,de                           ;[02ed] 19
+    ld      ($01cd),hl                      ;[02ee] 22 cd 01    ($01CD) = ($0001) + $0009 (CONOUT)
+    ld      de,$0021                        ;[02f1] 11 21 00
+    add     hl,de                           ;[02f4] 19
+    ld      ($01d0),hl                      ;[02f5] 22 d0 01    ($10D0) = ($0001) + $002A (LISTST)
+    ld      a,$80                           ;[02f8] 3e 80
+    ld      hl,$0003                        ;[02fa] 21 03 00
+    ld      (hl),a                          ;[02fd] 77          ($0003) = $80 (Setting IOBYTE, virtual addressing CONSOLE=TTY, READER=TTY, PUNCH=TTY, LIST=LINE PRINTER DEVICE) 
+    ld      hl,$10bf                        ;[02fe] 21 bf 10
+    ld      ($027c),hl                      ;[0301] 22 7c 02    ($027C) = $10BF
+    call    L0A9D                           ;[0304] cd 9d 0a
+    ld      hl,($0ae7)                      ;[0307] 2a e7 0a    Load the results from the routine call in HL
+    ld      a,l                             ;[030a] 7d
+    cp      $ea                             ;[030b] fe ea
+    jr      nz,L0371                        ;[030d] 20 62       if (l.s.b. ($0AE7))!=$EA then jump 
+    ld      a,h                             ;[030f] 7c
+    cp      $49                             ;[0310] fe 49
+    jr      nz,L0371                        ;[0312] 20 5d       if (m.s.b. ($0AE7))!=$49 then jump
+SIO_SETUP:
+    ld      a,$18                           ;[0314] 3e 18
+    out     ($b1),a                         ;[0316] d3 b1       Channel reset
+    ld      a,$05                           ;[0318] 3e 05
+    out     ($b1),a                         ;[031a] d3 b1       Access SIO register 5
+    ld      a,$ea                           ;[031c] 3e ea
+    out     ($b1),a                         ;[031e] d3 b1       Transmit enable, 8 bits character, Data terminal ready (DTR=LOW), Request to send (RTS=LOW)
+    ld      a,$03                           ;[0320] 3e 03
+    out     ($b1),a                         ;[0322] d3 b1       Access SIO register 3
+    ld      a,$c1                           ;[0324] 3e c1
+    out     ($b1),a                         ;[0326] d3 b1       Receive enable, 8 bits character
+    ret                                     ;[0328] c9
+
+; Activates Data terminal ready (DTR=LOW) and Request to send (RTS=LOW)
+SERIAL_READY_SIGNAL:
+    ld      a,$10                           ;[0329] 3e 10
+    out     ($b1),a                         ;[032b] d3 b1       Reset Ext/Status Interrupts
+    ld      a,$05                           ;[032d] 3e 05
+    out     ($b1),a                         ;[032f] d3 b1       Access SIO register 5
+    ld      a,$ea                           ;[0331] 3e ea
+    out     ($b1),a                         ;[0333] d3 b1       Transmit enable, 8 bits character, Data terminal ready (DTR=LOW), Request to send (RTS=LOW)
+    ret                                     ;[0335] c9
+
+; Deactivates Data terminal ready (DTR=LOW) and Request to send (RTS=LOW)
+SERIAL_NOT_READY_SIGNAL:
+    ld      a,$10                           ;[0336] 3e 10
+    ld      ($00b1),a                       ;[0338] 32 b1 00    Reset Ext/Status Interrupts
+    ld      a,$05                           ;[033b] 3e 05
+    out     ($b1),a                         ;[033d] d3 b1       Access SIO register 5
+    ld      a,$68                           ;[033f] 3e 68
+    out     ($b1),a                         ;[0341] d3 b1       Transmit enable, 8 bits character
+    ret                                     ;[0343] c9
+
+ld      a,$13                           ;[0344] 3e 13
+ld      ($036d),a                       ;[0346] 32 6d 03
+ld      a,$11                           ;[0349] 3e 11
+ld      ($036e),a                       ;[034b] 32 6e 03
+jp      SETUP                           ;[034e] c3 df 02
+ld      a,$13                           ;[0351] 3e 13
+ld      ($036d),a                       ;[0353] 32 6d 03
+ld      a,$11                           ;[0356] 3e 11
+ld      ($036e),a                       ;[0358] 32 6e 03
+ld      a,$01                           ;[035b] 3e 01
+ld      ($0104),a                       ;[035d] 32 04 01
+ld      a,$10                           ;[0360] 3e 10
+ld      ($036f),a                       ;[0362] 32 6f 03
+ld      a,$0d                           ;[0365] 3e 0d
+ld      ($0370),a                       ;[0367] 32 70 03
+jp      SETUP                           ;[036a] c3 df 02
+
+nop                                     ;[036d] 00
+nop                                     ;[036e] 00
+nop                                     ;[036f] 00
+
+
+DB $00                                  ;[0370] 00
+
+L0371:
+    jp      SIO_SETUP                           ;[0371] c3 14 03
+
+ld      a,$76                           ;[0374] 3e 76
+ld      hl,$037a                        ;[0376] 21 7a 03
+ld      (hl),a                          ;[0379] 77
+jp      $0000                           ;[037a] c3 00 00
+ld      a,($0104)                       ;[037d] 3a 04 01
+or      a                               ;[0380] b7
+ret     z                               ;[0381] c8
+call    $0725                           ;[0382] cd 25 07
+ld      hl,$04cf                        ;[0385] 21 cf 04
+call    $048e                           ;[0388] cd 8e 04
+call    $03a1                           ;[038b] cd a1 03
+ret                                     ;[038e] c9
+
+ld      a,($0104)                       ;[038f] 3a 04 01
+or      a                               ;[0392] b7
+ret     z                               ;[0393] c8
+call    $0725                           ;[0394] cd 25 07
+ld      hl,$04e0                        ;[0397] 21 e0 04
+call    $048e                           ;[039a] cd 8e 04
+call    $03a1                           ;[039d] cd a1 03
+ret                                     ;[03a0] c9
+
+ld      b,$03                           ;[03a1] 06 03
+call    SERIAL_IN                           ;[03a3] cd c8 0a
+djnz    $03a3                           ;[03a6] 10 fb
+ret                                     ;[03a8] c9
+
+and     $7f                             ;[03a9] e6 7f
+call    $03cc                           ;[03ab] cd cc 03
+ld      de,$0b5e                        ;[03ae] 11 5e 0b
+call    C_WRITESTR                           ;[03b1] cd 4d 08
+call    $0404                           ;[03b4] cd 04 04
+jp      $05fc                           ;[03b7] c3 fc 05
+call    $037d                           ;[03ba] cd 7d 03
+call    $03cc                           ;[03bd] cd cc 03
+ld      de,$0b28                        ;[03c0] 11 28 0b
+call    C_WRITESTR                           ;[03c3] cd 4d 08
+call    $0404                           ;[03c6] cd 04 04
+jp      $0529                           ;[03c9] c3 29 05
+xor     a                               ;[03cc] af
+ld      ($03f7),a                       ;[03cd] 32 f7 03
+ld      de,$0b43                        ;[03d0] 11 43 0b
+call    C_WRITESTR                           ;[03d3] cd 4d 08
+call    CONSOLE_INPUT                           ;[03d6] cd c9 01
+call    $027f                           ;[03d9] cd 7f 02
+ld      e,a                             ;[03dc] 5f
+call    C_OUT                           ;[03dd] cd 47 08
+ld      a,e                             ;[03e0] 7b
+cp      $4f                             ;[03e1] fe 4f
+jp      nz,$03f8                        ;[03e3] c2 f8 03
+ld      hl,$03a9                        ;[03e6] 21 a9 03
+ld      de,$0662                        ;[03e9] 11 62 06
+ld      bc,$0002                        ;[03ec] 01 02 00
+ldir                                    ;[03ef] ed b0
+ld      a,$01                           ;[03f1] 3e 01
+ld      ($03f7),a                       ;[03f3] 32 f7 03
+ret                                     ;[03f6] c9
+
+nop                                     ;[03f7] 00
+cp      $4e                             ;[03f8] fe 4e
+jp      nz,$03cc                        ;[03fa] c2 cc 03
+ld      hl,$0000                        ;[03fd] 21 00 00
+ld      ($0662),hl                      ;[0400] 22 62 06
+ret                                     ;[0403] c9
+
+ld      de,$0b79                        ;[0404] 11 79 0b
+call    C_WRITESTR                           ;[0407] cd 4d 08
+call    CONSOLE_INPUT                           ;[040a] cd c9 01
+call    $027f                           ;[040d] cd 7f 02
+cp      $0d                             ;[0410] fe 0d
+jp      nz,$0419                        ;[0412] c2 19 04
+xor     a                               ;[0415] af
+jp      $0426                           ;[0416] c3 26 04
+cp      $41                             ;[0419] fe 41
+jp      c,$040a                         ;[041b] da 0a 04
+cp      $44                             ;[041e] fe 44
+jp      nc,$040a                        ;[0420] d2 0a 04
+ld      e,a                             ;[0423] 5f
+sub     $40                             ;[0424] d6 40
+ld      ($0756),a                       ;[0426] 32 56 07
+call    C_OUT                           ;[0429] cd 47 08
+call    $073f                           ;[042c] cd 3f 07
+ld      de,$0b96                        ;[042f] 11 96 0b
+call    C_WRITESTR                           ;[0432] cd 4d 08
+ld      hl,$0757                        ;[0435] 21 57 07
+push    hl                              ;[0438] e5
+call    CONSOLE_INPUT                           ;[0439] cd c9 01
+call    $027f                           ;[043c] cd 7f 02
+pop     hl                              ;[043f] e1
+cp      $04                             ;[0440] fe 04
+jp      z,ENTRY_POINT                   ;[0442] ca d2 01
+cp      $2e                             ;[0445] fe 2e
+jp      z,$046e                         ;[0447] ca 6e 04
+cp      $08                             ;[044a] fe 08
+call    z,$047a                         ;[044c] cc 7a 04
+cp      $7f                             ;[044f] fe 7f
+call    z,$047a                         ;[0451] cc 7a 04
+cp      $0d                             ;[0454] fe 0d
+jp      z,$0481                         ;[0456] ca 81 04
+push    af                              ;[0459] f5
+ld      e,a                             ;[045a] 5f
+call    C_OUT                           ;[045b] cd 47 08
+pop     af                              ;[045e] f1
+cp      $08                             ;[045f] fe 08
+jp      z,$0438                         ;[0461] ca 38 04
+cp      $7f                             ;[0464] fe 7f
+jp      z,$0438                         ;[0466] ca 38 04
+ld      (hl),a                          ;[0469] 77
+inc     hl                              ;[046a] 23
+jp      $0438                           ;[046b] c3 38 04
+push    af                              ;[046e] f5
+ld      e,a                             ;[046f] 5f
+call    C_OUT                           ;[0470] cd 47 08
+pop     af                              ;[0473] f1
+ld      hl,$075f                        ;[0474] 21 5f 07
+jp      $0438                           ;[0477] c3 38 04
+dec     hl                              ;[047a] 2b
+push    af                              ;[047b] f5
+ld      a,$20                           ;[047c] 3e 20
+ld      (hl),a                          ;[047e] 77
+pop     af                              ;[047f] f1
+ret                                     ;[0480] c9
+
+ld      hl,$0757                        ;[0481] 21 57 07
+ld      a,(hl)                          ;[0484] 7e
+cp      $20                             ;[0485] fe 20
+jp      z,$0736                         ;[0487] ca 36 07
+call    $0725                           ;[048a] cd 25 07
+ret                                     ;[048d] c9
+
+ld      a,(hl)                          ;[048e] 7e
+call    SERIAL_OUT                           ;[048f] cd d0 0a
+cp      $10                             ;[0492] fe 10
+jr      nz,$049b                        ;[0494] 20 05
+push    hl                              ;[0496] e5
+call    $04b1                           ;[0497] cd b1 04
+pop     hl                              ;[049a] e1
+ld      e,a                             ;[049b] 5f
+call    C_OUT                           ;[049c] cd 47 08
+ld      a,e                             ;[049f] 7b
+cp      $0d                             ;[04a0] fe 0d
+ret     z                               ;[04a2] c8
+or      a                               ;[04a3] b7
+ret     z                               ;[04a4] c8
+ld      bc,$ffff                        ;[04a5] 01 ff ff
+dec     bc                              ;[04a8] 0b
+ld      a,b                             ;[04a9] 78
+or      a                               ;[04aa] b7
+jr      nz,$04a8                        ;[04ab] 20 fb
+inc     hl                              ;[04ad] 23
+jp      $048e                           ;[04ae] c3 8e 04
+ld      hl,$04c0                        ;[04b1] 21 c0 04
+ld      e,(hl)                          ;[04b4] 5e
+call    C_OUT                           ;[04b5] cd 47 08
+inc     hl                              ;[04b8] 23
+ld      a,e                             ;[04b9] 7b
+or      a                               ;[04ba] b7
+ld      a,$20                           ;[04bb] 3e 20
+ret     z                               ;[04bd] c8
+jr      $04b4                           ;[04be] 18 f4
+ld      b,e                             ;[04c0] 43
+ld      d,h                             ;[04c1] 54
+ld      d,d                             ;[04c2] 52
+ld      c,h                             ;[04c3] 4c
+dec     l                               ;[04c4] 2d
+ld      d,b                             ;[04c5] 50
+jr      nz,$04c8                        ;[04c6] 20 00
+ld      d,e                             ;[04c8] 53
+ld      d,b                             ;[04c9] 50
+ld      b,l                             ;[04ca] 45
+ld      b,c                             ;[04cb] 41
+ld      c,e                             ;[04cc] 4b
+ld      hl,$1000                        ;[04cd] 21 00 10
+ld      d,e                             ;[04d0] 53
+ld      b,l                             ;[04d1] 45
+ld      d,h                             ;[04d2] 54
+ld      ($303a),a                       ;[04d3] 32 3a 30
+inc     l                               ;[04d6] 2c
+dec     (hl)                            ;[04d7] 35
+ld      a,($2c30)                       ;[04d8] 3a 30 2c
+add     hl,sp                           ;[04db] 39
+ld      a,($0d30)                       ;[04dc] 3a 30 0d
+nop                                     ;[04df] 00
+djnz    $0535                           ;[04e0] 10 53
+ld      b,l                             ;[04e2] 45
+ld      d,h                             ;[04e3] 54
+ld      ($313a),a                       ;[04e4] 32 3a 31
+inc     l                               ;[04e7] 2c
+dec     (hl)                            ;[04e8] 35
+ld      a,($0d31)                       ;[04e9] 3a 31 0d
+nop                                     ;[04ec] 00
+call    CONSOLE_READY                           ;[04ed] cd c6 01
+or      a                               ;[04f0] b7
+ret     z                               ;[04f1] c8
+call    CONSOLE_INPUT                           ;[04f2] cd c9 01
+call    $027f                           ;[04f5] cd 7f 02
+ret                                     ;[04f8] c9
+
+ld      d,h                             ;[04f9] 54
+ld      d,d                             ;[04fa] 52
+ld      b,c                             ;[04fb] 41
+dec     c                               ;[04fc] 0d
+nop                                     ;[04fd] 00
+call    $0725                           ;[04fe] cd 25 07
+ld      hl,$04f9                        ;[0501] 21 f9 04
+call    $048e                           ;[0504] cd 8e 04
+call    $04ed                           ;[0507] cd ed 04
+cp      $04                             ;[050a] fe 04
+jp      z,ENTRY_POINT                         ;[050c] ca d2 01
+call    SERIAL_IN_AVAIL                           ;[050f] cd ba 0a
+jp      z,$0507                         ;[0512] ca 07 05
+call    SERIAL_IN                           ;[0515] cd c8 0a
+and     $7f                             ;[0518] e6 7f
+push    af                              ;[051a] f5
+ld      e,a                             ;[051b] 5f
+call    C_OUT                           ;[051c] cd 47 08
+pop     af                              ;[051f] f1
+cp      $05                             ;[0520] fe 05
+jp      nz,$0507                        ;[0522] c2 07 05
+call    $03a1                           ;[0525] cd a1 03
+ret                                     ;[0528] c9
+
+call    L082A                           ;[0529] cd 2a 08
+cp      $ff                             ;[052c] fe ff
+ld      de,$0ba9                        ;[052e] 11 a9 0b
+jp      z,$0730                         ;[0531] ca 30 07
+call    CONSOLE_INPUT                           ;[0534] cd c9 01
+cp      $0d                             ;[0537] fe 0d
+jr      z,$0548                         ;[0539] 28 0d
+call    SERIAL_OUT                           ;[053b] cd d0 0a
+call    SERIAL_IN                           ;[053e] cd c8 0a
+and     $7f                             ;[0541] e6 7f
+call    C_OUT                           ;[0543] cd 47 08
+jr      $0534                           ;[0546] 18 ec
+call    $04ed                           ;[0548] cd ed 04
+cp      $13                             ;[054b] fe 13
+jp      z,ENTRY_POINT                         ;[054d] ca d2 01
+call    SERIAL_IN                           ;[0550] cd c8 0a
+and     $7f                             ;[0553] e6 7f
+ld      c,a                             ;[0555] 4f
+ld      hl,$015b                        ;[0556] 21 5b 01
+ld      a,(hl)                          ;[0559] 7e
+or      a                               ;[055a] b7
+jr      z,$0560                         ;[055b] 28 03
+cp      c                               ;[055d] b9
+jr      nz,$0548                        ;[055e] 20 e8
+ld      a,c                             ;[0560] 79
+cp      $0d                             ;[0561] fe 0d
+jr      nz,$0548                        ;[0563] 20 e3
+call    $0704                           ;[0565] cd 04 07
+ld      hl,$0080                        ;[0568] 21 80 00
+ld      c,$14                           ;[056b] 0e 14
+ld      de,$0756                        ;[056d] 11 56 07
+call    SYSCALL                           ;[0570] cd 20 08
+or      a                               ;[0573] b7
+jp      nz,$074b                        ;[0574] c2 4b 07
+ld      hl,$0080                        ;[0577] 21 80 00
+push    hl                              ;[057a] e5
+ld      a,(hl)                          ;[057b] 7e
+ld      c,a                             ;[057c] 4f
+push    bc                              ;[057d] c5
+ld      a,$ff                           ;[057e] 3e ff
+ld      bc,$ffff                        ;[0580] 01 ff ff
+push    af                              ;[0583] f5
+call    SERIAL_IN_AVAIL                           ;[0584] cd ba 0a
+pop     af                              ;[0587] f1
+jp      nz,$0592                        ;[0588] c2 92 05
+dec     bc                              ;[058b] 0b
+jp      nz,$0583                        ;[058c] c2 83 05
+dec     a                               ;[058f] 3d
+jr      nz,$0580                        ;[0590] 20 ee
+call    $065f                           ;[0592] cd 5f 06
+and     $7f                             ;[0595] e6 7f
+push    hl                              ;[0597] e5
+ld      hl,$036d                        ;[0598] 21 6d 03
+cp      (hl)                            ;[059b] be
+pop     hl                              ;[059c] e1
+jp      nz,$05b1                        ;[059d] c2 b1 05
+call    SERIAL_IN_AVAIL                           ;[05a0] cd ba 0a
+jr      z,$05a0                         ;[05a3] 28 fb
+call    $065f                           ;[05a5] cd 5f 06
+push    hl                              ;[05a8] e5
+ld      hl,$036e                        ;[05a9] 21 6e 03
+cp      (hl)                            ;[05ac] be
+pop     hl                              ;[05ad] e1
+jp      nz,$05a0                        ;[05ae] c2 a0 05
+pop     bc                              ;[05b1] c1
+ld      hl,$0662                        ;[05b2] 21 62 06
+ld      a,c                             ;[05b5] 79
+call    SERIAL_OUT                           ;[05b6] cd d0 0a
+ld      a,h                             ;[05b9] 7c
+or      a                               ;[05ba] b7
+jr      nz,$05c0                        ;[05bb] 20 03
+ld      e,c                             ;[05bd] 59
+jr      $05c2                           ;[05be] 18 02
+ld      e,$2e                           ;[05c0] 1e 2e
+call    C_OUT                           ;[05c2] cd 47 08
+pop     hl                              ;[05c5] e1
+inc     hl                              ;[05c6] 23
+ld      a,l                             ;[05c7] 7d
+or      a                               ;[05c8] b7
+jp      z,$05cf                         ;[05c9] ca cf 05
+jp      $057a                           ;[05cc] c3 7a 05
+ld      a,($07bb)                       ;[05cf] 3a bb 07
+or      a                               ;[05d2] b7
+jp      nz,$05d9                        ;[05d3] c2 d9 05
+jp      $0565                           ;[05d6] c3 65 05
+call    $0725                           ;[05d9] cd 25 07
+ld      de,$0c16                        ;[05dc] 11 16 0c
+call    C_WRITESTR                           ;[05df] cd 4d 08
+xor     a                               ;[05e2] af
+ld      ($07bb),a                       ;[05e3] 32 bb 07
+call    $038f                           ;[05e6] cd 8f 03
+call    $0725                           ;[05e9] cd 25 07
+jp      MAIN_LOOP                           ;[05ec] c3 13 02
+ld      de,$0ee4                        ;[05ef] 11 e4 0e
+call    C_WRITESTR                           ;[05f2] cd 4d 08
+call    $038f                           ;[05f5] cd 8f 03
+jp      MAIN_LOOP                           ;[05f8] c3 13 02
+ret                                     ;[05fb] c9
+
+call    $0704                           ;[05fc] cd 04 07
+call    $0725                           ;[05ff] cd 25 07
+call    $086e                           ;[0602] cd 6e 08
+call    L0833                           ;[0605] cd 33 08
+cp      $ff                             ;[0608] fe ff
+call    z,$085c                         ;[060a] cc 5c 08
+cp      $ff                             ;[060d] fe ff
+ld      de,$0bc0                        ;[060f] 11 c0 0b
+jp      z,$0730                         ;[0612] ca 30 07
+ld      hl,$0080                        ;[0615] 21 80 00
+ld      ($0701),hl                      ;[0618] 22 01 07
+call    CONSOLE_INPUT                           ;[061b] cd c9 01
+call    $027f                           ;[061e] cd 7f 02
+cp      $0d                             ;[0621] fe 0d
+jr      z,$0632                         ;[0623] 28 0d
+call    SERIAL_OUT                           ;[0625] cd d0 0a
+call    SERIAL_IN                           ;[0628] cd c8 0a
+and     $7f                             ;[062b] e6 7f
+call    C_OUT                           ;[062d] cd 47 08
+jr      $061b                           ;[0630] 18 e9
+ld      hl,$015b                        ;[0632] 21 5b 01
+ld      a,(hl)                          ;[0635] 7e
+or      a                               ;[0636] b7
+jr      z,$063b                         ;[0637] 28 02
+jr      $063d                           ;[0639] 18 02
+ld      a,$0d                           ;[063b] 3e 0d
+call    SERIAL_OUT                           ;[063d] cd d0 0a
+call    $0a7b                           ;[0640] cd 7b 0a
+cp      $ff                             ;[0643] fe ff
+jr      nz,$0632                        ;[0645] 20 eb
+call    SERIAL_IN                           ;[0647] cd c8 0a
+and     $7f                             ;[064a] e6 7f
+ld      hl,($0701)                      ;[064c] 2a 01 07
+ld      bc,$0001                        ;[064f] 01 01 00
+call    $0a7b                           ;[0652] cd 7b 0a
+cp      $ff                             ;[0655] fe ff
+jp      nz,$0710                        ;[0657] c2 10 07
+call    $065f                           ;[065a] cd 5f 06
+jr      $0665                           ;[065d] 18 06
+call    SERIAL_IN                           ;[065f] cd c8 0a
+nop                                     ;[0662] 00
+nop                                     ;[0663] 00
+ret                                     ;[0664] c9
+
+ld      (hl),a                          ;[0665] 77
+ld      e,a                             ;[0666] 5f
+ld      a,($0662)                       ;[0667] 3a 62 06
+or      a                               ;[066a] b7
+jr      z,$066f                         ;[066b] 28 02
+jr      $0671                           ;[066d] 18 02
+ld      e,$2e                           ;[066f] 1e 2e
+call    C_OUT                           ;[0671] cd 47 08
+inc     hl                              ;[0674] 23
+ld      a,l                             ;[0675] 7d
+or      a                               ;[0676] b7
+jp      nz,$064f                        ;[0677] c2 4f 06
+call    $0680                           ;[067a] cd 80 06
+jp      $064c                           ;[067d] c3 4c 06
+ld      hl,$1144                        ;[0680] 21 44 11
+ld      bc,$0000                        ;[0683] 01 00 00
+ld      a,($0104)                       ;[0686] 3a 04 01
+or      a                               ;[0689] b7
+jr      z,$0694                         ;[068a] 28 08
+ld      a,($036f)                       ;[068c] 3a 6f 03
+call    SERIAL_OUT                           ;[068f] cd d0 0a
+jr      $0697                           ;[0692] 18 03
+call    $0a4c                           ;[0694] cd 4c 0a
+push    bc                              ;[0697] c5
+ld      bc,$0001                        ;[0698] 01 01 00
+ld      de,$2000                        ;[069b] 11 00 20
+call    $0a83                           ;[069e] cd 83 0a
+pop     bc                              ;[06a1] c1
+cp      $ff                             ;[06a2] fe ff
+jp      nz,$06c1                        ;[06a4] c2 c1 06
+ld      a,$01                           ;[06a7] 3e 01
+ld      ($0703),a                       ;[06a9] 32 03 07
+call    $065f                           ;[06ac] cd 5f 06
+ld      (hl),a                          ;[06af] 77
+push    bc                              ;[06b0] c5
+ld      e,a                             ;[06b1] 5f
+call    C_OUT                           ;[06b2] cd 47 08
+pop     bc                              ;[06b5] c1
+inc     bc                              ;[06b6] 03
+inc     hl                              ;[06b7] 23
+ld      a,c                             ;[06b8] 79
+cp      $0a                             ;[06b9] fe 0a
+jp      z,$0686                         ;[06bb] ca 86 06
+jp      $0697                           ;[06be] c3 97 06
+push    bc                              ;[06c1] c5
+ld      c,$15                           ;[06c2] 0e 15
+ld      de,$077a                        ;[06c4] 11 7a 07
+ld      hl,$0080                        ;[06c7] 21 80 00
+call    SYSCALL                           ;[06ca] cd 20 08
+pop     bc                              ;[06cd] c1
+or      a                               ;[06ce] b7
+jp      nz,$0730                        ;[06cf] c2 30 07
+call    $0704                           ;[06d2] cd 04 07
+ld      a,($0703)                       ;[06d5] 3a 03 07
+or      a                               ;[06d8] b7
+jr      z,$06fd                         ;[06d9] 28 22
+push    bc                              ;[06db] c5
+ld      de,$0080                        ;[06dc] 11 80 00
+ld      hl,$1144                        ;[06df] 21 44 11
+ldir                                    ;[06e2] ed b0
+pop     bc                              ;[06e4] c1
+ld      hl,$0080                        ;[06e5] 21 80 00
+add     hl,bc                           ;[06e8] 09
+ld      ($0701),hl                      ;[06e9] 22 01 07
+xor     a                               ;[06ec] af
+ld      ($0703),a                       ;[06ed] 32 03 07
+ld      a,($0104)                       ;[06f0] 3a 04 01
+or      a                               ;[06f3] b7
+jr      z,$06fd                         ;[06f4] 28 07
+ld      a,($0370)                       ;[06f6] 3a 70 03
+call    SERIAL_OUT                           ;[06f9] cd d0 0a
+ret                                     ;[06fc] c9
+
+call    $0a45                           ;[06fd] cd 45 0a
+ret                                     ;[0700] c9
+
+nop                                     ;[0701] 00
+nop                                     ;[0702] 00
+nop                                     ;[0703] 00
+ld      b,$80                           ;[0704] 06 80
+ld      hl,$0080                        ;[0706] 21 80 00
+ld      a,$20                           ;[0709] 3e 20
+ld      (hl),a                          ;[070b] 77
+inc     hl                              ;[070c] 23
+djnz    $070b                           ;[070d] 10 fc
+ret                                     ;[070f] c9
+
+call    $0680                           ;[0710] cd 80 06
+call    $0865                           ;[0713] cd 65 08
+call    $0853                           ;[0716] cd 53 08
+call    $0874                           ;[0719] cd 74 08
+ld      de,$0be5                        ;[071c] 11 e5 0b
+call    C_WRITESTR                           ;[071f] cd 4d 08
+jp      MAIN_LOOP                           ;[0722] c3 13 02
+ld      c,$0d                           ;[0725] 0e 0d
+call    CONSOLE_OUTPUT                           ;[0727] cd cc 01
+ld      c,$0a                           ;[072a] 0e 0a
+call    CONSOLE_OUTPUT                           ;[072c] cd cc 01
+ret                                     ;[072f] c9
+
+call    C_WRITESTR                           ;[0730] cd 4d 08
+jp      MAIN_LOOP                           ;[0733] c3 13 02
+ld      de,$0bd1                        ;[0736] 11 d1 0b
+call    C_WRITESTR                           ;[0739] cd 4d 08
+jp      ENTRY_POINT                           ;[073c] c3 d2 01
+ld      hl,$0757                        ;[073f] 21 57 07
+ld      b,$0b                           ;[0742] 06 0b
+ld      a,$20                           ;[0744] 3e 20
+ld      (hl),a                          ;[0746] 77
+inc     hl                              ;[0747] 23
+djnz    $0746                           ;[0748] 10 fc
+ret                                     ;[074a] c9
+
+ld      a,$01                           ;[074b] 3e 01
+ld      ($07bb),a                       ;[074d] 32 bb 07
+jp      $0577                           ;[0750] c3 77 05
+jp      MAIN_LOOP                           ;[0753] c3 13 02
+nop                                     ;[0756] 00
+jr      nz,$0779                        ;[0757] 20 20
+jr      nz,$077b                        ;[0759] 20 20
+jr      nz,$077d                        ;[075b] 20 20
+jr      nz,$077f                        ;[075d] 20 20
+jr      nz,$0781                        ;[075f] 20 20
+jr      nz,$0763                        ;[0761] 20 00
+
+nop                                     ;[0763] 00
+nop                                     ;[0764] 00
+nop                                     ;[0765] 00
+nop                                     ;[0766] 00
+nop                                     ;[0767] 00
+nop                                     ;[0768] 00
+nop                                     ;[0769] 00
+nop                                     ;[076a] 00
+nop                                     ;[076b] 00
+nop                                     ;[076c] 00
+nop                                     ;[076d] 00
+nop                                     ;[076e] 00
+nop                                     ;[076f] 00
+nop                                     ;[0770] 00
+nop                                     ;[0771] 00
+nop                                     ;[0772] 00
+nop                                     ;[0773] 00
+nop                                     ;[0774] 00
+nop                                     ;[0775] 00
+nop                                     ;[0776] 00
+nop                                     ;[0777] 00
+nop                                     ;[0778] 00
+nop                                     ;[0779] 00
+nop                                     ;[077a] 00
+jr      nz,$079d                        ;[077b] 20 20
+jr      nz,$079f                        ;[077d] 20 20
+jr      nz,$07a1                        ;[077f] 20 20
+jr      nz,$07a3                        ;[0781] 20 20
+inc     h                               ;[0783] 24
+inc     h                               ;[0784] 24
+inc     h                               ;[0785] 24
+nop                                     ;[0786] 00
+nop                                     ;[0787] 00
+nop                                     ;[0788] 00
+nop                                     ;[0789] 00
+nop                                     ;[078a] 00
+nop                                     ;[078b] 00
+nop                                     ;[078c] 00
+nop                                     ;[078d] 00
+nop                                     ;[078e] 00
+nop                                     ;[078f] 00
+nop                                     ;[0790] 00
+nop                                     ;[0791] 00
+nop                                     ;[0792] 00
+nop                                     ;[0793] 00
+nop                                     ;[0794] 00
+nop                                     ;[0795] 00
+nop                                     ;[0796] 00
+nop                                     ;[0797] 00
+nop                                     ;[0798] 00
+nop                                     ;[0799] 00
+nop                                     ;[079a] 00
+nop                                     ;[079b] 00
+nop                                     ;[079c] 00
+nop                                     ;[079d] 00
+nop                                     ;[079e] 00
+jr      nz,$07c1                        ;[079f] 20 20
+jr      nz,$07c3                        ;[07a1] 20 20
+jr      nz,$07c5                        ;[07a3] 20 20
+jr      nz,$07c7                        ;[07a5] 20 20
+jr      nz,$07c9                        ;[07a7] 20 20
+jr      nz,$07cb                        ;[07a9] 20 20
+nop                                     ;[07ab] 00
+nop                                     ;[07ac] 00
+nop                                     ;[07ad] 00
+nop                                     ;[07ae] 00
+jr      nz,$07d1                        ;[07af] 20 20
+jr      nz,$07d3                        ;[07b1] 20 20
+jr      nz,$07d5                        ;[07b3] 20 20
+jr      nz,$07d7                        ;[07b5] 20 20
+jr      nz,$07d9                        ;[07b7] 20 20
+jr      nz,$07db                        ;[07b9] 20 20
+nop                                     ;[07bb] 00
+nop                                     ;[07bc] 00
+nop                                     ;[07bd] 00
+nop                                     ;[07be] 00
+nop                                     ;[07bf] 00
+nop                                     ;[07c0] 00
+nop                                     ;[07c1] 00
+nop                                     ;[07c2] 00
+nop                                     ;[07c3] 00
+nop                                     ;[07c4] 00
+nop                                     ;[07c5] 00
+nop                                     ;[07c6] 00
+nop                                     ;[07c7] 00
+nop                                     ;[07c8] 00
+nop                                     ;[07c9] 00
+nop                                     ;[07ca] 00
+nop                                     ;[07cb] 00
+nop                                     ;[07cc] 00
+nop                                     ;[07cd] 00
+nop                                     ;[07ce] 00
+nop                                     ;[07cf] 00
+nop                                     ;[07d0] 00
+nop                                     ;[07d1] 00
+nop                                     ;[07d2] 00
+nop                                     ;[07d3] 00
+nop                                     ;[07d4] 00
+nop                                     ;[07d5] 00
+nop                                     ;[07d6] 00
+nop                                     ;[07d7] 00
+nop                                     ;[07d8] 00
+nop                                     ;[07d9] 00
+nop                                     ;[07da] 00
+nop                                     ;[07db] 00
+nop                                     ;[07dc] 00
+nop                                     ;[07dd] 00
+nop                                     ;[07de] 00
+nop                                     ;[07df] 00
+nop                                     ;[07e0] 00
+nop                                     ;[07e1] 00
+nop                                     ;[07e2] 00
+nop                                     ;[07e3] 00
+nop                                     ;[07e4] 00
+nop                                     ;[07e5] 00
+nop                                     ;[07e6] 00
+nop                                     ;[07e7] 00
+nop                                     ;[07e8] 00
+nop                                     ;[07e9] 00
+nop                                     ;[07ea] 00
+nop                                     ;[07eb] 00
+nop                                     ;[07ec] 00
+nop                                     ;[07ed] 00
+nop                                     ;[07ee] 00
+nop                                     ;[07ef] 00
+nop                                     ;[07f0] 00
+nop                                     ;[07f1] 00
+nop                                     ;[07f2] 00
+nop                                     ;[07f3] 00
+nop                                     ;[07f4] 00
+nop                                     ;[07f5] 00
+nop                                     ;[07f6] 00
+nop                                     ;[07f7] 00
+nop                                     ;[07f8] 00
+nop                                     ;[07f9] 00
+nop                                     ;[07fa] 00
+nop                                     ;[07fb] 00
+nop                                     ;[07fc] 00
+nop                                     ;[07fd] 00
+nop                                     ;[07fe] 00
+nop                                     ;[07ff] 00
+nop                                     ;[0800] 00
+nop                                     ;[0801] 00
+nop                                     ;[0802] 00
+nop                                     ;[0803] 00
+nop                                     ;[0804] 00
+nop                                     ;[0805] 00
+nop                                     ;[0806] 00
+nop                                     ;[0807] 00
+nop                                     ;[0808] 00
+nop                                     ;[0809] 00
+nop                                     ;[080a] 00
+nop                                     ;[080b] 00
+nop                                     ;[080c] 00
+nop                                     ;[080d] 00
+nop                                     ;[080e] 00
+nop                                     ;[080f] 00
+nop                                     ;[0810] 00
+nop                                     ;[0811] 00
+nop                                     ;[0812] 00
+nop                                     ;[0813] 00
+nop                                     ;[0814] 00
+nop                                     ;[0815] 00
+nop                                     ;[0816] 00
+nop                                     ;[0817] 00
+nop                                     ;[0818] 00
+nop                                     ;[0819] 00
+nop                                     ;[081a] 00
+nop                                     ;[081b] 00
+nop                                     ;[081c] 00
+nop                                     ;[081d] 00
+nop                                     ;[081e] 00
+nop                                     ;[081f] 00
+; STACK space starts from here (GROWS UPWARD)
+
+SYSCALL:
+    push    hl                              ;[0820] e5
+    push    bc                              ;[0821] c5
+    push    de                              ;[0822] d5
+    call    $0005                           ;[0823] cd 05 00
+    pop     de                              ;[0826] d1
+    pop     bc                              ;[0827] c1
+    pop     hl                              ;[0828] e1
+    ret                                     ;[0829] c9
+
+L082A:
+    ld      c,$0f                           ;[082a] 0e 0f
+    ld      de,$0756                        ;[082c] 11 56 07
+    call    SYSCALL                         ;[082f] cd 20 08
+    ret                                     ;[0832] c9
+
+L0833:
+    ld      hl,$0756                        ;[0833] 21 56 07
+    ld      de,$077a                        ;[0836] 11 7a 07
+    ld      bc,$0009                        ;[0839] 01 09 00
+    ldir                                    ;[083c] ed b0
+    ld      c,$0f                           ;[083e] 0e 0f
+    ld      de,$077a                        ;[0840] 11 7a 07
+    call    SYSCALL                         ;[0843] cd 20 08
+    ret                                     ;[0846] c9
+
+C_OUT:
+    ld      c,$02                           ;[0847] 0e 02
+    call    SYSCALL                           ;[0849] cd 20 08
+    ret                                     ;[084c] c9
+
+C_WRITESTR:
+    ld      c,$09                           ;[084d] 0e 09
+    call    SYSCALL                           ;[084f] cd 20 08
+    ret                                     ;[0852] c9
+
+L8053:
+    ld      c,$13                           ;[0853] 0e 13
+    ld      de,$0756                        ;[0855] 11 56 07
+    call    SYSCALL                           ;[0858] cd 20 08
+    ret                                     ;[085b] c9
+
+L085C:
+    ld      c,$16                           ;[085c] 0e 16
+    ld      de,$077a                        ;[085e] 11 7a 07
+    call    SYSCALL                           ;[0861] cd 20 08
+    ret                                     ;[0864] c9
+
+L0865:
+    ld      c,$10                           ;[0865] 0e 10
+    ld      de,$077a                        ;[0867] 11 7a 07
+    call    SYSCALL                           ;[086a] cd 20 08
+    ret                                     ;[086d] c9
+
+L086E:
+    ld      c,$0d                           ;[086e] 0e 0d
+    call    SYSCALL                           ;[0870] cd 20 08
+    ret                                     ;[0873] c9
+
+ld      hl,$077a                        ;[0874] 21 7a 07
+ld      de,$079e                        ;[0877] 11 9e 07
+ld      bc,$0010                        ;[087a] 01 10 00
+ldir                                    ;[087d] ed b0
+ld      hl,$0756                        ;[087f] 21 56 07
+ld      de,$07ae                        ;[0882] 11 ae 07
+ld      bc,$0010                        ;[0885] 01 10 00
+ldir                                    ;[0888] ed b0
+ld      c,$17                           ;[088a] 0e 17
+ld      de,$079e                        ;[088c] 11 9e 07
+call    SYSCALL                           ;[088f] cd 20 08
+cp      $ff                             ;[0892] fe ff
+ret     nz                              ;[0894] c0
+jp      $0730                           ;[0895] c3 30 07
+ld      de,$0f06                        ;[0898] 11 06 0f
+call    C_WRITESTR                           ;[089b] cd 4d 08
+call    $0903                           ;[089e] cd 03 09
+ld      a,($091b)                       ;[08a1] 3a 1b 09
+inc     a                               ;[08a4] 3c
+ld      ($091b),a                       ;[08a5] 32 1b 09
+ld      hl,($0919)                      ;[08a8] 2a 19 09
+ld      a,(hl)                          ;[08ab] 7e
+inc     hl                              ;[08ac] 23
+ld      ($0919),hl                      ;[08ad] 22 19 09
+or      a                               ;[08b0] b7
+jr      nz,$08b5                        ;[08b1] 20 02
+add     $30                             ;[08b3] c6 30
+cp      $01                             ;[08b5] fe 01
+jr      nz,$08bb                        ;[08b7] 20 02
+add     $30                             ;[08b9] c6 30
+cp      $0d                             ;[08bb] fe 0d
+jr      z,$08d0                         ;[08bd] 28 11
+push    af                              ;[08bf] f5
+ld      e,a                             ;[08c0] 5f
+call    C_OUT                           ;[08c1] cd 47 08
+pop     af                              ;[08c4] f1
+ld      a,($091b)                       ;[08c5] 3a 1b 09
+cp      $04                             ;[08c8] fe 04
+jp      nc,$08a1                        ;[08ca] d2 a1 08
+jp      $089e                           ;[08cd] c3 9e 08
+xor     a                               ;[08d0] af
+ld      ($091b),a                       ;[08d1] 32 1b 09
+call    $08f2                           ;[08d4] cd f2 08
+inc     hl                              ;[08d7] 23
+inc     hl                              ;[08d8] 23
+inc     hl                              ;[08d9] 23
+ld      ($0919),hl                      ;[08da] 22 19 09
+call    $08f2                           ;[08dd] cd f2 08
+dec     hl                              ;[08e0] 2b
+dec     hl                              ;[08e1] 2b
+ld      ($0919),hl                      ;[08e2] 22 19 09
+call    $08f2                           ;[08e5] cd f2 08
+inc     hl                              ;[08e8] 23
+ld      ($0919),hl                      ;[08e9] 22 19 09
+call    $08f2                           ;[08ec] cd f2 08
+jp      $093c                           ;[08ef] c3 3c 09
+call    $0903                           ;[08f2] cd 03 09
+ld      hl,($0919)                      ;[08f5] 2a 19 09
+ld      a,(hl)                          ;[08f8] 7e
+call    $11ca                           ;[08f9] cd ca 11
+ld      de,$11fe                        ;[08fc] 11 fe 11
+call    C_WRITESTR                           ;[08ff] cd 4d 08
+ret                                     ;[0902] c9
+
+ld      b,$04                           ;[0903] 06 04
+push    hl                              ;[0905] e5
+push    bc                              ;[0906] c5
+ld      hl,($0917)                      ;[0907] 2a 17 09
+ld      e,(hl)                          ;[090a] 5e
+call    C_OUT                           ;[090b] cd 47 08
+inc     hl                              ;[090e] 23
+pop     bc                              ;[090f] c1
+ld      ($0917),hl                      ;[0910] 22 17 09
+djnz    $0906                           ;[0913] 10 f1
+pop     hl                              ;[0915] e1
+ret                                     ;[0916] c9
+
+inc     e                               ;[0917] 1c
+add     hl,bc                           ;[0918] 09
+inc     bc                              ;[0919] 03
+ld      bc,$1b00                        ;[091a] 01 00 1b
+dec     a                               ;[091d] 3d
+dec     h                               ;[091e] 25
+inc     a                               ;[091f] 3c
+dec     de                              ;[0920] 1b
+dec     a                               ;[0921] 3d
+daa                                     ;[0922] 27
+inc     a                               ;[0923] 3c
+dec     de                              ;[0924] 1b
+dec     a                               ;[0925] 3d
+add     hl,hl                           ;[0926] 29
+inc     a                               ;[0927] 3c
+dec     de                              ;[0928] 1b
+dec     a                               ;[0929] 3d
+dec     hl                              ;[092a] 2b
+ld      b,h                             ;[092b] 44
+dec     de                              ;[092c] 1b
+dec     a                               ;[092d] 3d
+ld      sp,$1b3c                        ;[092e] 31 3c 1b
+dec     a                               ;[0931] 3d
+inc     sp                              ;[0932] 33
+inc     a                               ;[0933] 3c
+dec     de                              ;[0934] 1b
+dec     a                               ;[0935] 3d
+dec     (hl)                            ;[0936] 35
+inc     a                               ;[0937] 3c
+dec     de                              ;[0938] 1b
+dec     a                               ;[0939] 3d
+scf                                     ;[093a] 37
+inc     a                               ;[093b] 3c
+ld      hl,$0103                        ;[093c] 21 03 01
+ld      ($0919),hl                      ;[093f] 22 19 09
+ld      hl,$091c                        ;[0942] 21 1c 09
+ld      ($0917),hl                      ;[0945] 22 17 09
+call    CONSOLE_INPUT                           ;[0948] cd c9 01
+call    $027f                           ;[094b] cd 7f 02
+cp      $0d                             ;[094e] fe 0d
+jp      z,$0960                         ;[0950] ca 60 09
+cp      $0b                             ;[0953] fe 0b
+jp      z,$0960                         ;[0955] ca 60 09
+cp      $0c                             ;[0958] fe 0c
+jp      z,$0960                         ;[095a] ca 60 09
+jp      $093c                           ;[095d] c3 3c 09
+nop                                     ;[0960] 00
+ld      hl,$0757                        ;[0961] 21 57 07
+ld      a,$3f                           ;[0964] 3e 3f
+ld      b,$0c                           ;[0966] 06 0c
+ld      (hl),a                          ;[0968] 77
+inc     hl                              ;[0969] 23
+dec     b                               ;[096a] 05
+jp      nz,$0968                        ;[096b] c2 68 09
+ld      de,$0e99                        ;[096e] 11 99 0e
+call    C_WRITESTR                           ;[0971] cd 4d 08
+call    CONSOLE_INPUT                           ;[0974] cd c9 01
+call    $027f                           ;[0977] cd 7f 02
+push    af                              ;[097a] f5
+ld      e,a                             ;[097b] 5f
+call    C_OUT                           ;[097c] cd 47 08
+pop     af                              ;[097f] f1
+ld      hl,$0756                        ;[0980] 21 56 07
+cp      $44                             ;[0983] fe 44
+jp      nc,ENTRY_POINT                        ;[0985] d2 d2 01
+sub     $40                             ;[0988] d6 40
+ld      (hl),a                          ;[098a] 77
+ld      de,$0e96                        ;[098b] 11 96 0e
+call    C_WRITESTR                           ;[098e] cd 4d 08
+ld      de,$0e96                        ;[0991] 11 96 0e
+call    C_WRITESTR                           ;[0994] cd 4d 08
+ld      de,$0756                        ;[0997] 11 56 07
+ld      c,$11                           ;[099a] 0e 11
+call    SYSCALL                           ;[099c] cd 20 08
+push    af                              ;[099f] f5
+xor     a                               ;[09a0] af
+ld      ($0960),a                       ;[09a1] 32 60 09
+pop     af                              ;[09a4] f1
+call    $09d3                           ;[09a5] cd d3 09
+ld      de,$0080                        ;[09a8] 11 80 00
+ld      c,$1a                           ;[09ab] 0e 1a
+call    SYSCALL                           ;[09ad] cd 20 08
+ld      de,$0756                        ;[09b0] 11 56 07
+ld      c,$12                           ;[09b3] 0e 12
+call    SYSCALL                           ;[09b5] cd 20 08
+cp      $ff                             ;[09b8] fe ff
+jp      nz,$09a5                        ;[09ba] c2 a5 09
+ld      e,$0d                           ;[09bd] 1e 0d
+call    C_OUT                           ;[09bf] cd 47 08
+ld      e,$0a                           ;[09c2] 1e 0a
+call    C_OUT                           ;[09c4] cd 47 08
+call    CONSOLE_INPUT                           ;[09c7] cd c9 01
+xor     a                               ;[09ca] af
+ld      ($0960),a                       ;[09cb] 32 60 09
+jp      ENTRY_POINT                           ;[09ce] c3 d2 01
+nop                                     ;[09d1] 00
+nop                                     ;[09d2] 00
+ld      ($09d1),a                       ;[09d3] 32 d1 09
+push    af                              ;[09d6] f5
+ld      a,($0960)                       ;[09d7] 3a 60 09
+cp      $05                             ;[09da] fe 05
+jp      nz,$09e9                        ;[09dc] c2 e9 09
+ld      de,$0e96                        ;[09df] 11 96 0e
+call    C_WRITESTR                           ;[09e2] cd 4d 08
+xor     a                               ;[09e5] af
+ld      ($0960),a                       ;[09e6] 32 60 09
+pop     af                              ;[09e9] f1
+ld      e,$20                           ;[09ea] 1e 20
+call    C_OUT                           ;[09ec] cd 47 08
+ld      a,($09d1)                       ;[09ef] 3a d1 09
+add     a                               ;[09f2] 87
+add     a                               ;[09f3] 87
+add     a                               ;[09f4] 87
+add     a                               ;[09f5] 87
+add     a                               ;[09f6] 87
+ld      ($09d1),a                       ;[09f7] 32 d1 09
+ld      de,($09d1)                      ;[09fa] ed 5b d1 09
+ld      hl,$0080                        ;[09fe] 21 80 00
+add     hl,de                           ;[0a01] 19
+ld      a,(hl)                          ;[0a02] 7e
+cp      $e5                             ;[0a03] fe e5
+jp      z,$0a35                         ;[0a05] ca 35 0a
+push    hl                              ;[0a08] e5
+ld      de,$000c                        ;[0a09] 11 0c 00
+add     hl,de                           ;[0a0c] 19
+ld      a,(hl)                          ;[0a0d] 7e
+or      a                               ;[0a0e] b7
+pop     hl                              ;[0a0f] e1
+jp      nz,$0a35                        ;[0a10] c2 35 0a
+inc     hl                              ;[0a13] 23
+ld      b,$08                           ;[0a14] 06 08
+call    $0a3b                           ;[0a16] cd 3b 0a
+ld      e,$2e                           ;[0a19] 1e 2e
+call    C_OUT                           ;[0a1b] cd 47 08
+ld      b,$03                           ;[0a1e] 06 03
+call    $0a3b                           ;[0a20] cd 3b 0a
+ld      e,$20                           ;[0a23] 1e 20
+call    C_OUT                           ;[0a25] cd 47 08
+ld      e,$3a                           ;[0a28] 1e 3a
+call    C_OUT                           ;[0a2a] cd 47 08
+ld      a,($0960)                       ;[0a2d] 3a 60 09
+inc     a                               ;[0a30] 3c
+ld      ($0960),a                       ;[0a31] 32 60 09
+ret                                     ;[0a34] c9
+
+ld      e,$08                           ;[0a35] 1e 08
+call    C_OUT                           ;[0a37] cd 47 08
+ret                                     ;[0a3a] c9
+
+ld      e,(hl)                          ;[0a3b] 5e
+call    C_OUT                           ;[0a3c] cd 47 08
+inc     hl                              ;[0a3f] 23
+dec     b                               ;[0a40] 05
+jp      nz,$0a3b                        ;[0a41] c2 3b 0a
+ret                                     ;[0a44] c9
+
+ld      a,($036e)                       ;[0a45] 3a 6e 03
+call    SERIAL_OUT                           ;[0a48] cd d0 0a
+ret                                     ;[0a4b] c9
+
+push    af                              ;[0a4c] f5
+ld      a,($036d)                       ;[0a4d] 3a 6d 03
+call    SERIAL_OUT                           ;[0a50] cd d0 0a
+pop     af                              ;[0a53] f1
+ret                                     ;[0a54] c9
+
+nop                                     ;[0a55] 00
+push    bc                              ;[0a56] c5
+push    de                              ;[0a57] d5
+push    hl                              ;[0a58] e5
+ld      b,$02                           ;[0a59] 06 02
+ld      de,$9000                        ;[0a5b] 11 00 90
+push    af                              ;[0a5e] f5
+push    bc                              ;[0a5f] c5
+rl      a                               ;[0a60] cb 17
+dec     de                              ;[0a62] 1b
+ld      a,d                             ;[0a63] 7a
+or      a                               ;[0a64] b7
+jr      nz,$0a60                        ;[0a65] 20 f9
+pop     bc                              ;[0a67] c1
+pop     af                              ;[0a68] f1
+djnz    $0a5b                           ;[0a69] 10 f0
+dec     a                               ;[0a6b] 3d
+jr      nz,$0a59                        ;[0a6c] 20 eb
+pop     hl                              ;[0a6e] e1
+pop     de                              ;[0a6f] d1
+pop     bc                              ;[0a70] c1
+ret                                     ;[0a71] c9
+
+ld      b,$06                           ;[0a72] 06 06
+xor     a                               ;[0a74] af
+call    SERIAL_OUT                           ;[0a75] cd d0 0a
+djnz    $0a74                           ;[0a78] 10 fa
+ret                                     ;[0a7a] c9
+
+push    bc                              ;[0a7b] c5
+push    de                              ;[0a7c] d5
+ld      bc,$ffff                        ;[0a7d] 01 ff ff
+ld      de,$8000                        ;[0a80] 11 00 80
+call    SERIAL_IN_AVAIL                           ;[0a83] cd ba 0a
+jp      nz,$0a98                        ;[0a86] c2 98 0a
+dec     de                              ;[0a89] 1b
+ld      a,d                             ;[0a8a] 7a
+or      e                               ;[0a8b] b3
+jp      nz,$0a83                        ;[0a8c] c2 83 0a
+dec     bc                              ;[0a8f] 0b
+ld      a,b                             ;[0a90] 78
+or      c                               ;[0a91] b1
+jp      nz,$0a8f                        ;[0a92] c2 8f 0a
+pop     de                              ;[0a95] d1
+pop     bc                              ;[0a96] c1
+ret                                     ;[0a97] c9
+
+ld      a,$ff                           ;[0a98] 3e ff
+pop     de                              ;[0a9a] d1
+pop     bc                              ;[0a9b] c1
+ret                                     ;[0a9c] c9
+
+
+; At the end of the execution in ($0AE7) there will be a 2 byte value representing the sum 
+; of all of the content of memory starting from $03DA up until the content of the memory is =$24
+; Expected result = $49ea (????)
+L0A9D:
+    ld      hl,$0000                        ;[0a9d] 21 00 00
+    ld      ($0ae7),hl                      ;[0aa0] 22 e7 0a    ($0ae7) = $0000
+    ld      hl,$0d3a                        ;[0aa3] 21 3a 0d    
+L0AA6:
+    ld      a,(hl)                          ;[0aa6] 7e
+    cp      $24                             ;[0aa7] fe 24
+    ret     z                               ;[0aa9] c8          if ($0d3a) == $24 then return
+    push    hl                              ;[0aaa] e5
+    ld      hl,($0ae7)                      ;[0aab] 2a e7 0a
+    ld      e,a                             ;[0aae] 5f
+    ld      d,$00                           ;[0aaf] 16 00
+    add     hl,de                           ;[0ab1] 19
+    ld      ($0ae7),hl                      ;[0ab2] 22 e7 0a
+    pop     hl                              ;[0ab5] e1
+    inc     hl                              ;[0ab6] 23
+    jp      L0AA6                           ;[0ab7] c3 a6 0a
+
+
+; Check if there is a character available to read from the SIO, {$00=not available,$01=available}
+;   Get data from the #port stored at address $0116 and the value stored at address $0117 ($01 (?)) and 
+;   perform an AND operation between them
+SERIAL_IN_AVAIL:
+    push    hl                              ;[0aba] e5
+    push    bc                              ;[0abb] c5
+    ld      hl,$0116                        ;[0abc] 21 16 01
+    ld      c,(hl)                          ;[0abf] 4e
+    in      a,(c)                           ;[0ac0] ed 78
+    inc     hl                              ;[0ac2] 23
+    ld      c,(hl)                          ;[0ac3] 4e
+    and     c                               ;[0ac4] a1
+    pop     bc                              ;[0ac5] c1
+    pop     hl                              ;[0ac6] e1
+    ret                                     ;[0ac7] c9
+
+
+; Get input in A register and disable receive 
+SERIAL_IN:
+    in      a,($b0)                         ;[0ac8] db b0
+    push    af                              ;[0aca] f5
+    call    SERIAL_NOT_READY_SIGNAL         ;[0acb] cd 36 03
+    pop     af                              ;[0ace] f1
+    ret                                     ;[0acf] c9
+
+; Wait for the SIO's transmit buffer to be empty and then send the value stored in A 
+SERIAL_OUT:
+    push    hl                              ;[0ad0] e5
+    push    bc                              ;[0ad1] c5
+    push    af                              ;[0ad2] f5
+WAIT_EMPTY_TX_BUFFER:
+    ld      hl,$0116                        ;[0ad3] 21 16 01
+    ld      c,(hl)                          ;[0ad6] 4e
+    in      a,(c)                           ;[0ad7] ed 78       Read SIO's RR0
+    inc     hl                              ;[0ad9] 23
+    inc     hl                              ;[0ada] 23
+    ld      c,(hl)                          ;[0adb] 4e
+    and     c                               ;[0adc] a1
+    jr      z,WAIT_EMPTY_TX_BUFFER          ;[0add] 28 f4       Jump if SIO's transmit buffer is not empty
+    inc     hl                              ;[0adf] 23
+    ld      c,(hl)                          ;[0ae0] 4e
+    pop     af                              ;[0ae1] f1
+    out     (c),a                           ;[0ae2] ed 79       Transmit value of A
+    pop     bc                              ;[0ae4] c1
+    pop     hl                              ;[0ae5] e1
+    ret                                     ;[0ae6] c9
+
+DB $00                                      ;[0ae7] 00
+DB $00                                      ;[0ae8] 00
+
+ld      a,$12                           ;[0ae9] 3e 12
+ld      ($0b0d),a                       ;[0aeb] 32 0d 0b
+ld      ($0b0e),a                       ;[0aee] 32 0e 0b
+ld      hl,$0080                        ;[0af1] 21 80 00
+xor     a                               ;[0af4] af
+ld      e,(hl)                          ;[0af5] 5e
+inc     hl                              ;[0af6] 23
+push    hl                              ;[0af7] e5
+call    $0b0f                           ;[0af8] cd 0f 0b
+ld      ($0b0c),a                       ;[0afb] 32 0c 0b
+pop     hl                              ;[0afe] e1
+ld      a,l                             ;[0aff] 7d
+or      a                               ;[0b00] b7
+ld      a,($0b0c)                       ;[0b01] 3a 0c 0b
+jr      nz,$0af5                        ;[0b04] 20 ef
+ld      e,$00                           ;[0b06] 1e 00
+call    $0b0f                           ;[0b08] cd 0f 0b
+ret                                     ;[0b0b] c9
+
+nop                                     ;[0b0c] 00
+nop                                     ;[0b0d] 00
+nop                                     ;[0b0e] 00
+ld      b,$08                           ;[0b0f] 06 08
+bit     7,a                             ;[0b11] cb 7f
+jr      z,$0b1c                         ;[0b13] 28 07
+ld      hl,$0b0d                        ;[0b15] 21 0d 0b
+xor     (hl)                            ;[0b18] ae
+ld      ($0b0e),a                       ;[0b19] 32 0e 0b
+sla     a                               ;[0b1c] cb 27
+sla     e                               ;[0b1e] cb 23
+jr      nc,$0b24                        ;[0b20] 30 02
+set     0,a                             ;[0b22] cb c7
+dec     b                               ;[0b24] 05
+jr      nz,$0b11                        ;[0b25] 20 ea
+ret                                     ;[0b27] c9
+
+DB      $0D                             ;[0b28] 
+DB      $0A                             ;[0b29] 
+DB      "EMISSION D'UN FICHIER   $"     ;[0b2a-0b42]
+
+DB      $0D                             ;[0b43] 
+DB      $0A                             ;[0b44] 
+DB      "FICHIER ASCII ? (O/N)  :$"     ;[0b45-0b5d]
+
+DB      $0D                             ;[0b53] 
+DB      $0A                             ;[0b5f] 
+DB      "RECEPTION D'UN FICHIER  $"     ;[0b60-0b78]
+
+DB      $0D                             ;[0b79] 
+DB      $0A                             ;[0b7a] 
+DB      "SUR QUEL DISQUE (A B C) ? $"   ;[0b7b-0b95]
+
+DB      $0D                             ;[0b96] 
+DB      $0A                             ;[0b87] 
+DB      "NOM DU FICHIER  $"             ;[0b98-0ba8]
+
+DB      $0D                             ;[0ba9]
+DB      $0A                             ;[0baa] 
+DB      "FICHIER INEXISTANT"            ;[0bab-0bbc]
+DB      $0D                             ;[0bbd]
+DB      $0A                             ;[0bbe]
+DB      $24                             ;[0bbf] '$'
+
+DB      $0D                             ;[0bc0]
+DB      $0A                             ;[0bc1]
+DB      "DISQUE PLEIN"                  ;[0bc2-0bcd]
+DB      $0D                             ;[0bce]
+DB      $0A                             ;[0bcf]
+DB      $24                             ;[0bd0]
+
+DB      $0D                             ;[0bd1] 
+DB      $0A                             ;[0bd2]
+DB      "MAUVAISE ENTREE"               ;[0bd3-0be1]
+DB      $0D                             ;[0be2]
+DB      $0A                             ;[0be3]
+DB      $24                             ;[0be4]
+
+DB      $0D                             ;[0be5]
+DB      $0A                             ;[0be6]
+DB      "FICHIER RECU ET ECRIT"         ;[0be7-0bfb]
+DB      $0D                             ;[0bfc]
+DB      $0A                             ;[0bfd]
+DB      $24                             ;[0bfe]
+
+DB      $0D                             ;[0bff]
+DB      $0A                             ;[0c00]
+DB      "TRANSFERT EN COURS"            ;[0c01-0c12]
+DB      $0D                             ;[0c13]
+DB      $0A                             ;[0c14]
+DB      $24                             ;[0c15]
+
+DB      $0D                                                     ;[0c16]
+DB      $0A                                                     ;[0c17]
+DB      "TRANSFERT TERMINE"                                     ;[0c18-0c28]
+DB      $0D                                                     ;[0c29]
+DB      $0A                                                     ;[0c2a]
+DB      $0D                                                                     ;[0c2b]
+DB      $0A                                                     ;[0c2c]
+DB      "ATTENDEZ DE SAVOIR SI VOUS AVEZ LA MAIN"               ;[0c2d-0c53]
+DB      $0D                                                     ;[0c54]
+DB      $0A                                                     ;[0c55]
+DB      "A L'APPARITION D'UN 'PROMPT' OU D'UNE '*' ET"          ;[0c56-0c81]
+DB      $0D                                                     ;[0c82]
+DB      $0A                                                     ;[0c83]
+DB      "ENTREZ (SAVE) AU CLAVIER SI C'EST UN NOUVEAU FICHIER"  ;[0c84-0cb7]
+DB      $0D                                                     ;[0cb8]
+DB      $0A                                                     ;[0cb9]
+DB      "OU (REPLACE) S'IL EXISTE DEJA"                         ;[0cba-0cd6]
+DB      $0D                                                     ;[0cd7]
+DB      $0A                                                     ;[0cd8]
+DB      $24                                                     ;[0cd9]
+
+DB      $1A                                             ;[0cda]
+DB      $1B                                             ;[0cdb]
+DB      "=#%SANCO A SANCO :OUI $"                       ;[0cdc-0cf2]
+
+DB      $1A                                             ;[0cf3]
+DB      $1B                                             ;[0cf4]
+DB      "=#%SANCO A SANCO :NON $"                       ;[0cf5-0d0b]
+
+DB      $1B                                             ;[0d0c]
+DB      "=#>VIA TRANSPAC :OUI $"                        ;[0d0d-0d22]
+
+DB      $1B                                             ;[0d23] 
+DB      "=#>PAR TRANSPAC :NON $"                        ;[0d24-0d39]
+
+DB      $1B                                             ;[0d3a]
+DB      "=!! (C) S.F.C.E 10/01/82 POUR SANCO-IBEX"      ;[0d3b-0d62]
+DB      $1B                                             ;[0d63]
+DB      $48                                             ;[0d64]
+DB      $1B                                             ;[0d65]
+DB      "=(* SANCONET  CLUB DES UTILISATEURS SANCO "    ;[0d66-0d8f]
+DB      $1B                                             ;[0d90]
+DB      $49                                             ;[0d91]
+DB      $1B                                             ;[0d92]
+DB      "=,*CTRL-D RETOUR AU MENU PRINCIPAL"            ;[0d93-0db4]
+DB      $1B                                             ;[0db5]
+DB      "=.*CTRL-T MISE EN LIAISON"                     ;[0db6-0dce]
+DB      $1B                                             ;[0dcf]
+DB      "=0*CTRL-L EMISSION D'UN FICHIER DU DISQUE"     ;[0dd0-0df8]
+DB      $1B                                             ;[0df9]
+DB      "=2*CTRL-W RECEPTION D'UN FICHIER SUR DISQUE"   ;[0dfa-0e24]
+DB      $1B                                             ;[0e25]
+DB      "=4*CTRL-A AFFICHAGE DU CATALOGUE DU DISQUE"    ;[0e26-0e4f]
+DB      $1B                                             ;[0e50]
+DB      "=6/VOTRE CHOIX? :$"                            ;[0e51-0e62]
+
+INIT_STRING:
+DB      $1A                             ;[0e63]
+DB      $0D                             ;[0e64]                             
+DB      $0A                             ;[0e65]
+DB      $0A                             ;[0e66]
+DB      $0A                             ;[0e67]
+DB      "TERM80 VER 1.0 (C) S.F.C.E"    ;[0e68-0e7f]
+DB      $0D                             ;[0e80]
+DB      $0A                             ;[0e81]
+DB      $0D                             ;[0e82]
+DB      $0A                             ;[0e83]
+DB      "LIAISON EN COURS"              ;[0e86-0e95]
+DB      $0D                             ;[0e96]
+DB      $0A                             ;[0e97]
+DB      $24                             ;[0e98] '$'
+
+
+DB      $1A                                             ;[0e99]
+DB      $1B                                             ;[0e9A]
+DB      "=%/AFFICHAGE DE LA DIRECTORY DU DRIVE : $"     ;[0e9b-0ec3]
+DB      $0D                                             ;[0ec4]
+DB      $0A                                             ;[0ec5]
+DB      "APPUYER SUR LA TOUCHE RETURN $"                ;[0ec6-0ee3]
+DB      $0D                                             ;[0ee4]
+DB      $0A                                             ;[0ee5]
+DB      "PARASITE OU RUPTURE DE LIGNE "                 ;[0ee6-0f02]
+DB      $0D                                             ;[0f03]
+DB      $0A                                             ;[0f04]
+DB      $24                                             ;[0f05] '$'
+
+
+DB      $1A                                                                         ;[0f06]
+DB      $0D                                                                         ;[0f07]
+DB      $0A                                                                         ;[0f08]
+DB      $0D                                                                         ;[0f09]
+DB      $0A                                                                         ;[0f0a]
+DB      $09                                                                         ;[0f0b]
+DB      $09                                                                         ;[0f0c]
+DB      "OUI = 1"                                                                   ;[0f0d-0f13]
+DB      $09                                                                         ;[0f14]
+DB      $09                                                                         ;[0f15]
+DB      $09                                                                         ;[0f16]
+DB      "NON = 0"                                                                   ;[0f17-0f1d]
+DB      $1B                                                                         ;[0f1e]
+DB      "=%*SANCO A SANCO :      "                                                  ;[0f1f-0f36]
+DB      $1B                                                                         ;[0f37]
+DB      "='*VIA TRANSPAC  :      "                                                  ;[0f38-0f4f]
+DB      $1B                                                                         ;[0f50]
+DB      "=)*APPEL AUTOMATIQUE :  "                                                  ;[0f51-0f68]
+DB      $1B                                                                         ;[0f69]
+DB      "=+*SI OUI APPEL DE LA BASE :                "                              ;[0f6a-0f95]
+DB      $1B                                                                         ;[0f96]
+DB      "=-*pour modifier deplacez le curseur ou return pour sortir"                ;[0f97-0fd0]
+DB      $0D                                                                         ;[0fd1]
+DB      $0A                                                                         ;[0fd2]
+DB      "-----------------------------------------------------------"               ;[0fd3-100d]
+DB      $0D                                                                         ;[100e]
+DB      $0A                                                                         ;[100f]
+DB      "partie technique a ne modifier qu'avec l'accord de votre installateur "    ;[1010-1055]
+DB      $1B                                                                         ;[1056]
+DB      "=1*PORT DE STATUS   =   "                                                  ;[1057-106e]
+DB      $1B                                                                         ;[106f]
+DB      "=3*PORT DE DATA     =   "                                                  ;[1070-1087]
+DB      $1B                                                                         ;[1088]
+DB      "=5*MASQUE D'ENTREE  =   "                                                  ;[1089-10a0]
+DB      $1B                                                                         ;[10a1]
+DB      "=7*MASQUE DE SORTIE =   "                                                  ;[10a2-10b9]
+DB      $1B                                                                         ;[10ba]
+DB      "=.!$"                                                                      ;[10bb-10be]
+DB      "*"                                                                         ;[10bf]
+
+nop                                     ;[10c0] 00
+nop                                     ;[10c1] 00
+nop                                     ;[10c2] 00
+nop                                     ;[10c3] 00
+nop                                     ;[10c4] 00
+nop                                     ;[10c5] 00
+nop                                     ;[10c6] 00
+nop                                     ;[10c7] 00
+nop                                     ;[10c8] 00
+nop                                     ;[10c9] 00
+nop                                     ;[10ca] 00
+nop                                     ;[10cb] 00
+nop                                     ;[10cc] 00
+nop                                     ;[10cd] 00
+nop                                     ;[10ce] 00
+nop                                     ;[10cf] 00
+nop                                     ;[10d0] 00
+nop                                     ;[10d1] 00
+nop                                     ;[10d2] 00
+nop                                     ;[10d3] 00
+nop                                     ;[10d4] 00
+nop                                     ;[10d5] 00
+nop                                     ;[10d6] 00
+nop                                     ;[10d7] 00
+nop                                     ;[10d8] 00
+nop                                     ;[10d9] 00
+nop                                     ;[10da] 00
+nop                                     ;[10db] 00
+nop                                     ;[10dc] 00
+nop                                     ;[10dd] 00
+nop                                     ;[10de] 00
+nop                                     ;[10df] 00
+nop                                     ;[10e0] 00
+nop                                     ;[10e1] 00
+nop                                     ;[10e2] 00
+nop                                     ;[10e3] 00
+nop                                     ;[10e4] 00
+nop                                     ;[10e5] 00
+nop                                     ;[10e6] 00
+nop                                     ;[10e7] 00
+nop                                     ;[10e8] 00
+nop                                     ;[10e9] 00
+nop                                     ;[10ea] 00
+nop                                     ;[10eb] 00
+nop                                     ;[10ec] 00
+nop                                     ;[10ed] 00
+nop                                     ;[10ee] 00
+nop                                     ;[10ef] 00
+nop                                     ;[10f0] 00
+nop                                     ;[10f1] 00
+nop                                     ;[10f2] 00
+nop                                     ;[10f3] 00
+nop                                     ;[10f4] 00
+nop                                     ;[10f5] 00
+nop                                     ;[10f6] 00
+nop                                     ;[10f7] 00
+nop                                     ;[10f8] 00
+nop                                     ;[10f9] 00
+nop                                     ;[10fa] 00
+nop                                     ;[10fb] 00
+nop                                     ;[10fc] 00
+nop                                     ;[10fd] 00
+nop                                     ;[10fe] 00
+nop                                     ;[10ff] 00
+nop                                     ;[1100] 00
+nop                                     ;[1101] 00
+nop                                     ;[1102] 00
+nop                                     ;[1103] 00
+nop                                     ;[1104] 00
+nop                                     ;[1105] 00
+nop                                     ;[1106] 00
+nop                                     ;[1107] 00
+nop                                     ;[1108] 00
+nop                                     ;[1109] 00
+nop                                     ;[110a] 00
+nop                                     ;[110b] 00
+nop                                     ;[110c] 00
+nop                                     ;[110d] 00
+nop                                     ;[110e] 00
+nop                                     ;[110f] 00
+nop                                     ;[1110] 00
+nop                                     ;[1111] 00
+nop                                     ;[1112] 00
+nop                                     ;[1113] 00
+nop                                     ;[1114] 00
+nop                                     ;[1115] 00
+nop                                     ;[1116] 00
+nop                                     ;[1117] 00
+nop                                     ;[1118] 00
+nop                                     ;[1119] 00
+nop                                     ;[111a] 00
+nop                                     ;[111b] 00
+nop                                     ;[111c] 00
+nop                                     ;[111d] 00
+nop                                     ;[111e] 00
+nop                                     ;[111f] 00
+nop                                     ;[1120] 00
+nop                                     ;[1121] 00
+nop                                     ;[1122] 00
+nop                                     ;[1123] 00
+nop                                     ;[1124] 00
+nop                                     ;[1125] 00
+nop                                     ;[1126] 00
+nop                                     ;[1127] 00
+nop                                     ;[1128] 00
+nop                                     ;[1129] 00
+nop                                     ;[112a] 00
+nop                                     ;[112b] 00
+nop                                     ;[112c] 00
+nop                                     ;[112d] 00
+nop                                     ;[112e] 00
+nop                                     ;[112f] 00
+nop                                     ;[1130] 00
+nop                                     ;[1131] 00
+nop                                     ;[1132] 00
+nop                                     ;[1133] 00
+nop                                     ;[1134] 00
+nop                                     ;[1135] 00
+nop                                     ;[1136] 00
+nop                                     ;[1137] 00
+nop                                     ;[1138] 00
+nop                                     ;[1139] 00
+nop                                     ;[113a] 00
+nop                                     ;[113b] 00
+nop                                     ;[113c] 00
+nop                                     ;[113d] 00
+nop                                     ;[113e] 00
+nop                                     ;[113f] 00
+nop                                     ;[1140] 00
+nop                                     ;[1141] 00
+nop                                     ;[1142] 00
+nop                                     ;[1143] 00
+nop                                     ;[1144] 00
+nop                                     ;[1145] 00
+nop                                     ;[1146] 00
+nop                                     ;[1147] 00
+nop                                     ;[1148] 00
+nop                                     ;[1149] 00
+nop                                     ;[114a] 00
+nop                                     ;[114b] 00
+nop                                     ;[114c] 00
+nop                                     ;[114d] 00
+nop                                     ;[114e] 00
+nop                                     ;[114f] 00
+nop                                     ;[1150] 00
+nop                                     ;[1151] 00
+nop                                     ;[1152] 00
+nop                                     ;[1153] 00
+nop                                     ;[1154] 00
+nop                                     ;[1155] 00
+nop                                     ;[1156] 00
+nop                                     ;[1157] 00
+nop                                     ;[1158] 00
+nop                                     ;[1159] 00
+nop                                     ;[115a] 00
+nop                                     ;[115b] 00
+nop                                     ;[115c] 00
+nop                                     ;[115d] 00
+nop                                     ;[115e] 00
+nop                                     ;[115f] 00
+nop                                     ;[1160] 00
+nop                                     ;[1161] 00
+nop                                     ;[1162] 00
+nop                                     ;[1163] 00
+nop                                     ;[1164] 00
+nop                                     ;[1165] 00
+nop                                     ;[1166] 00
+nop                                     ;[1167] 00
+nop                                     ;[1168] 00
+nop                                     ;[1169] 00
+nop                                     ;[116a] 00
+nop                                     ;[116b] 00
+nop                                     ;[116c] 00
+nop                                     ;[116d] 00
+nop                                     ;[116e] 00
+nop                                     ;[116f] 00
+nop                                     ;[1170] 00
+nop                                     ;[1171] 00
+nop                                     ;[1172] 00
+nop                                     ;[1173] 00
+nop                                     ;[1174] 00
+nop                                     ;[1175] 00
+nop                                     ;[1176] 00
+nop                                     ;[1177] 00
+nop                                     ;[1178] 00
+nop                                     ;[1179] 00
+nop                                     ;[117a] 00
+nop                                     ;[117b] 00
+nop                                     ;[117c] 00
+nop                                     ;[117d] 00
+nop                                     ;[117e] 00
+nop                                     ;[117f] 00
+nop                                     ;[1180] 00
+nop                                     ;[1181] 00
+nop                                     ;[1182] 00
+nop                                     ;[1183] 00
+nop                                     ;[1184] 00
+nop                                     ;[1185] 00
+nop                                     ;[1186] 00
+nop                                     ;[1187] 00
+nop                                     ;[1188] 00
+nop                                     ;[1189] 00
+nop                                     ;[118a] 00
+nop                                     ;[118b] 00
+nop                                     ;[118c] 00
+nop                                     ;[118d] 00
+nop                                     ;[118e] 00
+nop                                     ;[118f] 00
+nop                                     ;[1190] 00
+nop                                     ;[1191] 00
+nop                                     ;[1192] 00
+nop                                     ;[1193] 00
+nop                                     ;[1194] 00
+nop                                     ;[1195] 00
+nop                                     ;[1196] 00
+nop                                     ;[1197] 00
+nop                                     ;[1198] 00
+nop                                     ;[1199] 00
+nop                                     ;[119a] 00
+nop                                     ;[119b] 00
+nop                                     ;[119c] 00
+nop                                     ;[119d] 00
+nop                                     ;[119e] 00
+nop                                     ;[119f] 00
+nop                                     ;[11a0] 00
+nop                                     ;[11a1] 00
+nop                                     ;[11a2] 00
+nop                                     ;[11a3] 00
+nop                                     ;[11a4] 00
+nop                                     ;[11a5] 00
+nop                                     ;[11a6] 00
+nop                                     ;[11a7] 00
+nop                                     ;[11a8] 00
+nop                                     ;[11a9] 00
+nop                                     ;[11aa] 00
+nop                                     ;[11ab] 00
+nop                                     ;[11ac] 00
+nop                                     ;[11ad] 00
+nop                                     ;[11ae] 00
+nop                                     ;[11af] 00
+nop                                     ;[11b0] 00
+nop                                     ;[11b1] 00
+nop                                     ;[11b2] 00
+nop                                     ;[11b3] 00
+nop                                     ;[11b4] 00
+nop                                     ;[11b5] 00
+nop                                     ;[11b6] 00
+nop                                     ;[11b7] 00
+nop                                     ;[11b8] 00
+nop                                     ;[11b9] 00
+nop                                     ;[11ba] 00
+nop                                     ;[11bb] 00
+nop                                     ;[11bc] 00
+nop                                     ;[11bd] 00
+nop                                     ;[11be] 00
+nop                                     ;[11bf] 00
+nop                                     ;[11c0] 00
+nop                                     ;[11c1] 00
+nop                                     ;[11c2] 00
+nop                                     ;[11c3] 00
+ld      a,$01                           ;[11c4] 3e 01
+ld      ($11fc),a                       ;[11c6] 32 fc 11
+ret                                     ;[11c9] c9
+
+push    hl                              ;[11ca] e5
+ld      ($11fd),a                       ;[11cb] 32 fd 11
+cp      $0f                             ;[11ce] fe 0f
+call    c,$11c4                         ;[11d0] dc c4 11
+xor     a                               ;[11d3] af
+ld      hl,$11fd                        ;[11d4] 21 fd 11
+rrd                                     ;[11d7] ed 67
+and     $0f                             ;[11d9] e6 0f
+add     $30                             ;[11db] c6 30
+cp      $3a                             ;[11dd] fe 3a
+jp      m,$11e4                         ;[11df] fa e4 11
+add     $07                             ;[11e2] c6 07
+ld      ($11ff),a                       ;[11e4] 32 ff 11
+ld      a,(hl)                          ;[11e7] 7e
+add     $37                             ;[11e8] c6 37
+ld      ($11fe),a                       ;[11ea] 32 fe 11
+ld      a,($11fc)                       ;[11ed] 3a fc 11
+or      a                               ;[11f0] b7
+jr      z,$11fa                         ;[11f1] 28 07
+xor     a                               ;[11f3] af
+ld      ($11fe),a                       ;[11f4] 32 fe 11
+ld      ($11fc),a                       ;[11f7] 32 fc 11
+pop     hl                              ;[11fa] e1
+ret                                     ;[11fb] c9
+
+nop                                     ;[11fc] 00
+nop                                     ;[11fd] 00
+nop                                     ;[11fe] 00
+nop                                     ;[11ff] 00
+inc     h                               ;[1200] 24
+push    hl                              ;[1201] e5
+ld      hl,$11fe                        ;[1202] 21 fe 11
+ld      a,(hl)                          ;[1205] 7e
+sub     $37                             ;[1206] d6 37
+rla                                     ;[1208] 17
+rla                                     ;[1209] 17
+rla                                     ;[120a] 17
+rla                                     ;[120b] 17
+ld      (hl),a                          ;[120c] 77
+inc     hl                              ;[120d] 23
+ld      a,(hl)                          ;[120e] 7e
+sub     $30                             ;[120f] d6 30
+dec     hl                              ;[1211] 2b
+add     (hl)                            ;[1212] 86
+ld      ($11fd),a                       ;[1213] 32 fd 11
+pop     hl                              ;[1216] e1
+ret                                     ;[1217] c9
+
+nop                                     ;[1218] 00
+nop                                     ;[1219] 00
+nop                                     ;[121a] 00
+nop                                     ;[121b] 00
+nop                                     ;[121c] 00
+nop                                     ;[121d] 00
+nop                                     ;[121e] 00
+nop                                     ;[121f] 00
+nop                                     ;[1220] 00
+nop                                     ;[1221] 00
+nop                                     ;[1222] 00
+nop                                     ;[1223] 00
+nop                                     ;[1224] 00
+nop                                     ;[1225] 00
+nop                                     ;[1226] 00
+nop                                     ;[1227] 00
+nop                                     ;[1228] 00
+nop                                     ;[1229] 00
+nop                                     ;[122a] 00
+nop                                     ;[122b] 00
+nop                                     ;[122c] 00
+nop                                     ;[122d] 00
+nop                                     ;[122e] 00
+nop                                     ;[122f] 00
+nop                                     ;[1230] 00
+nop                                     ;[1231] 00
+nop                                     ;[1232] 00
+nop                                     ;[1233] 00
+nop                                     ;[1234] 00
+nop                                     ;[1235] 00
+nop                                     ;[1236] 00
+nop                                     ;[1237] 00
+nop                                     ;[1238] 00
+nop                                     ;[1239] 00
+nop                                     ;[123a] 00
+nop                                     ;[123b] 00
+nop                                     ;[123c] 00
+nop                                     ;[123d] 00
+nop                                     ;[123e] 00
+nop                                     ;[123f] 00
+nop                                     ;[1240] 00
+nop                                     ;[1241] 00
+nop                                     ;[1242] 00
+nop                                     ;[1243] 00
+ld      a,$01                           ;[1244] 3e 01
+ld      ($11fc),a                       ;[1246] 32 fc 11
+ret                                     ;[1249] c9
+
+push    hl                              ;[124a] e5
+ld      ($11fd),a                       ;[124b] 32 fd 11
+cp      $0f                             ;[124e] fe 0f
+call    c,$11c4                         ;[1250] dc c4 11
+xor     a                               ;[1253] af
+ld      hl,$11fd                        ;[1254] 21 fd 11
+rrd                                     ;[1257] ed 67
+and     $0f                             ;[1259] e6 0f
+add     $30                             ;[125b] c6 30
+cp      $3a                             ;[125d] fe 3a
+jp      m,$11e4                         ;[125f] fa e4 11
+add     $07                             ;[1262] c6 07
+ld      ($11ff),a                       ;[1264] 32 ff 11
+ld      a,(hl)                          ;[1267] 7e
+add     $37                             ;[1268] c6 37
+ld      ($11fe),a                       ;[126a] 32 fe 11
+ld      a,($11fc)                       ;[126d] 3a fc 11
+or      a                               ;[1270] b7
+jr      z,$127a                         ;[1271] 28 07
+xor     a                               ;[1273] af
+ld      ($11fe),a                       ;[1274] 32 fe 11
+ld      ($11fc),a                       ;[1277] 32 fc 11
+pop     hl                              ;[127a] e1
+ret                                     ;[127b] c9
+
+nop                                     ;[127c] 00
+nop                                     ;[127d] 00
+nop                                     ;[127e] 00
+nop                                     ;[127f] 00
