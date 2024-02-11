@@ -6,7 +6,7 @@
 
 You can receive all files by setting the script in receive mode and select everything ("\*.\*") in TRX62.
 
-# Transmission description
+# Transmission description from receiving end
 
 ## Header
 
