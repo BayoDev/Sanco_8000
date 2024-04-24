@@ -16,7 +16,7 @@ When the program RCX62 is started it enters the MAIN_LOOP.
 While inside the MAIN_LOOP the program will keep reading incoming characters from the serial port until one of three values are received:
 
 - 0x18 : signals RCX62 to close the program (no more files to receive)
-- 0x02 : A file is about to be transmitted and RCX62 enter the RECEIVE_MODE
+- 0x02 : A file is about to be transmitted and RCX62 enters the RECEIVE_MODE
 - 0x12 : ?
 
 ## RECEIVE_MODE
