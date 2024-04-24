@@ -9,7 +9,7 @@ You can receive all files by setting the script in receive mode and select every
 # Transmission description from receiving end
 >Note that if at any moment the transmitter receives 0x0D the transmission  is considered failed and must start from the beginning
 
-When the program RCX62 is started it enter the MAIN_LOOP. 
+When the program RCX62 is started it enters the MAIN_LOOP. 
 
 ## MAIN_LOOP
 
